@@ -1,0 +1,48 @@
+<group 3>
+
+
+Availability for meeting expectations:
+ Every team member is available to meet three days a week for an hour.
+ Each meeting should not exceed 2hrs.
+ Team members should inform the group about absenc from meetings atleat 2 -3 days before meetings except in case of an emergency.
+ 
+Response time to communication expectations:
+ Team memebers are exepected to respond to an commuication or memo within 2 - 4hrs.
+ Do not bother team memebers if they do not respond within 4 hrs.
+ Create a list  that documents what task was given to the team member and define minor or major offence( this would help in the procedure for handling such team member).
+ 
+ 
+Definition of done: when is a task complete? (hint: "I'm done with that but I didn't check it in to github" is not done.):
+ A task is done once one members of the group reviews and approves.
+ Checking the trello board to check check the task progress<e.g for a task given to an individual we should state that this percentage was done>.
+ 
+ 
+ 
+
+Scrum meeting format/frequency and distribution of documentation tasks (meeting minutes, updating task board):
+ Previous meeting review.
+ What task has been done.
+
+ 
+
+Procedure for adopting policies (e.g. code style, code check-in steps, documentation updates):
+ Code should have appropriate comments, and spacing for readibility.
+ Solid Principle should be adopted in the each code wiritten.
+
+
+if you adopt such a policy during the initial meeting, put it here:
+  Documentation updates is pushed unto github and email alerts are sent to team memebers.
+  
+
+Procedure for handling a member who is not meeting expectations
+(must include at least 3 actions before involving the instructor):
+Action 1: Contact the member.
+Action 2: Get other group member to assist 
+Action 3: Give member a different task.
+if all of the above fails conatct instructor.
+
+Signatures: each member must sign their name by typing their name at the bottom of the document.
+Sean
+Omer
+peter 
+xin qiang
