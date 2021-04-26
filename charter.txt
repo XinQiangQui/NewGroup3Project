@@ -4,11 +4,11 @@
 Availability for meeting expectations:
  Every team member is available to meet three days a week for an hour.
  Each meeting should not exceed 2hrs.
- Team members should inform the group about absenc from meetings atleat 2 -3 days before meetings except in case of an emergency.
+ Team members should inform the group about absence from meetings at least 2 -3 days before meetings except in case of an emergency.
  
 Response time to communication expectations:
- Team memebers are exepected to respond to an commuication or memo within 2 - 4hrs.
- Do not bother team memebers if they do not respond within 4 hrs.
+ Team members are expected to respond to an communication or memo within 2 - 4hrs.
+ Do not bother team members if they do not respond within 4 hrs.
  Create a list  that documents what task was given to the team member and define minor or major offence( this would help in the procedure for handling such team member).
  
  
@@ -26,8 +26,8 @@ Scrum meeting format/frequency and distribution of documentation tasks (meeting 
  
 
 Procedure for adopting policies (e.g. code style, code check-in steps, documentation updates):
- Code should have appropriate comments, and spacing for readibility.
- Solid Principle should be adopted in the each code wiritten.
+ Code should have appropriate comments, and spacing for readability.
+ Solid Principle should be adopted in the each code written.
 
 
 if you adopt such a policy during the initial meeting, put it here:
@@ -39,7 +39,7 @@ Procedure for handling a member who is not meeting expectations
 Action 1: Contact the member.
 Action 2: Get other group member to assist 
 Action 3: Give member a different task.
-if all of the above fails conatct instructor.
+if all of the above fails contact instructor.
 
 Signatures: each member must sign their name by typing their name at the bottom of the document.
 Sean
