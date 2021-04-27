@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Author : Xin Qiang
 
 
@@ -156,7 +157,7 @@ class Course(models.Model):
     def add_ta(self, Ta):
         pass
 
-    def remove_ta(self,ta):
+    def remove_ta(self, ta):
         pass
 
     def display_ta(self):
@@ -197,4 +198,7 @@ class Lab(models.Model):
         self.TA = Ta
 
 
-
+# for course table
+class Courses(models.Model):
+    name = models.CharField(max_length=300)
+    #content = models.TextField()
