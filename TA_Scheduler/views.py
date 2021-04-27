@@ -20,7 +20,10 @@ class HomeView(View):
     def post(self, request):
         name = request.POST['name']
         password = request.POST['password']
-        return render(request, "home.html", {"name": name, "password": password})
+        if name=='user' and password=='user':
+            return render(request, "home.html", {"name": name, "password": password})
+        elif name=='admin' and password=='admin':
+            return render(request, "AdminP.html", {"name": name, "password": password})
 
 
 class CoursesView(View):
