@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
-from django_tables2 import SingleTableView
 
-from .models import Courses
-from .tables import CoursesTable
+
+# from django_tables2 import SingleTableView
+
+# from .models import Courses
+# from .tables import CoursesTable
 
 
 # Create your views here.
@@ -18,11 +20,14 @@ class HomeView(View):
         password = request.POST['password']
         return render(request, "home.html", {"name": name, "password": password})
 
+    # table = CoursesTable(Courses.objects.all())
 
-class CoursesListView(SingleTableView):
-    def courses(self, request):
-        table = CoursesTable(Courses.objects.all())
+    #    "table":table
+    # })
 
-        return render(request,"Courses.html",{
-            "table":table
-        })
+
+class CoursesView(View):
+    def get(self, request):
+        return render(request, "courses.html")
+
+    # def post(self, request):
