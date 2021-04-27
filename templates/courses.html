@@ -21,6 +21,11 @@
     <title>Course list</title>
 
 </head>
+<form action="/addCourse/" method ="post">
+    {% csrf_token %}
+        <input type="text" name="name">
+        <input type="submit" value="Add Course name">
+</form>
 <body>
 <div style="overflow-y: auto;">
 <table>
@@ -72,6 +77,12 @@
   </tr>
 
 </table>
+ <ul>
+     {% for i in all_courses %}
+     <li>{{ i.name }}
+     </li>
+     {% endfor %}
+ </ul>
 </div>
 </body>
 </html>

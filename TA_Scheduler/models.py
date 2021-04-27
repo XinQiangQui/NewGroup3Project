@@ -166,7 +166,7 @@ class Course(models.Model):
     def add_lab(self, lab):
         pass
 
-    def remove_lab(self, lab):
+    def remove_lab(self, lab_id):
         pass
 
     def display_lab(self):
@@ -198,7 +198,48 @@ class Lab(models.Model):
         self.TA = Ta
 
 
+class Assignment(models.Model):
+    topic = models.CharField(max_length=50)
+    startDate = models.DateField()
+    endDate = models.DateField()
+    content = models.CharField(max_length=200)
+    f = None
+
+    def Assignment(self, topic, start, end, content, file):
+        self.topic = topic
+        self.content = content
+        self.startDate = start
+        self.endDate = end
+        self.f = file
+
+    # getter and setter
+    def get_topic(self):
+        return self.topic
+
+    def set_topic(self, newTopic):
+        self.topic = newTopic
+
+    def get_start_date(self):
+        return self.startDate
+
+    def set_start_date(self, newDate):
+        self.startDate = newDate
+
+    def get_end_date(self):
+        return self.endDate
+
+    def set_end_date(self, newDate):
+        self.endDate = newDate
+
+    def edit_content(self):
+        pass
+
+    # upload file
+    def upload_file(self, file):
+        pass
+
+
 # for course table
 class Courses(models.Model):
     name = models.CharField(max_length=300)
-    #content = models.TextField()
+    # content = models.TextField()
