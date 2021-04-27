@@ -24,7 +24,8 @@ class HomeView(View):
             return render(request, "home.html", {"name": name, "password": password})
         elif name=='admin' and password=='admin':
             return render(request, "AdminP.html", {"name": name, "password": password})
-
+        else:
+                return render(request, "home.html", {"message": "Information is incorrect"})
 
 class CoursesView(View):
     def get(self, request):
