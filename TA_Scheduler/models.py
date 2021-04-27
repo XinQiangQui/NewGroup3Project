@@ -200,4 +200,5 @@ class Lab(models.Model):
 
 # for course table
 class Courses(models.Model):
-    name = models.CharField(max_length=300, verbose_name="course name")
+    name = models.CharField(max_length=300)
+    #content = models.TextField()
