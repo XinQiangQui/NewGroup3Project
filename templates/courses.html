@@ -7,20 +7,19 @@
        <link rel="stylesheet" type="text/css" href="{% static 'admin/style.css' %}">
    </head>
    <body style= "border:black;">
-<p><strong>Course Creation</strong></p>
+<p><strong>Create Course</strong></p>
 
       <form action="" method="post">
          {% csrf_token %}
           <p>
              <input name="courseName" type="text" placeholder="Course Name" /><br />
-             <input name="courseID" type="text" placeholder="Course Number" /><br />
+             <input name="courseID" type="text" placeholder="Course ID" /><br />
           </p>
          <p><input type="submit" /></p>
       </form>
-    <img border = "0" src="https://www.clker.com/cliparts/q/O/s/c/U/8/logout-button-png.svg.hi.png" alt="logout button" width="125" height="50">
-    </a>
+      </a>
    <br>
-   <a href="/supervisor"> Go back To Admin Page </a>
+   <a href="/supervisor"><button>Go back To Admin Page</button>  </a>
          <div>
          {%  for message in messages %}
          <h3> {{message}}</h3>
