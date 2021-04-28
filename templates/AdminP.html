@@ -1,44 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Admin page">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="AdminP.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+	</style>
 </head>
 <body>
-<!-- Comments: -->
-<section class ="header">
-    <nav>
-       <a href="AdminP.html"><img src=images/logo3.png></a>
-        <div class="links">
-            <ul>
-                <li> <a href="">Manage Courses</a></li>
-                <li> <a href="">Manage Users</a></li>
-                <li> <a href="">Email</a></li>
-                <li> <a href="">Contact Information</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="text-box">
-        <h1>Welcome
-        </h1>
+<div class="container">
+	<a href="/users/{{user.id}}/edit">Edit your profile</a> | <a href="/">Logout</a>
+	<hr>
+	<h3>Welcome, Supervisor: {{name}} </h3>
+	<hr>
 
-    </div>
-</section>
+    <h4>Manage Users</h4>
+	<hr>
+	<a href="/newAccount">Add New User</a>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Lastname</th>
+				<th>Email</th>
+				<th>Phone number</th>
+				<th>Home Address</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for user in users %}
+			<tr>
+				<td>{{user.id}}</td>
+				<td><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+				{% if user.user_level == 9 %}
+				<td>Admin</td>
+				{% else %}
+				<td>Normal</td>
+				{%endif%}
+				<td><a href="/users/{{user.id}}/edit">Edit</a> | <a href="/users/{{user.id}}/delete">Delete</a></td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
 
 
-</header>
-<main>
+</div>
 
-</main>
-<hr/>
-<hr/>
-<br/>
-<footer>
 
-</footer>
+
 </body>
 </html>

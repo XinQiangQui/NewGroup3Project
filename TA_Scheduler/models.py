@@ -6,12 +6,13 @@ from django.db import models
 
 # Parent class
 class Account(models.Model):
-    name = models.CharField(max_length=20)
-    lastname = models.CharField(max_length=20)
-    email = models.EmailField(max_length=254)
-    phone_number = models.IntegerField()
-    home_address = models.CharField(max_length=100)
-    status = models.CharField(max_length=10)
+    name = models.CharField(max_length=20, null=True)
+    lastname = models.CharField(max_length=20, null=True)
+    email = models.EmailField(max_length=254, null=True)
+    phone_number = models.IntegerField(null=True)
+    home_address = models.CharField(max_length=100, null=True)
+    password = models.CharField(max_length=20)
+    status = models.CharField(max_length=10, null=True)
 
     # Getters and setters for all variables
     def get_name(self):
@@ -129,7 +130,7 @@ class TA(Account):
 # course and lab class
 class Course(models.Model):
     name = models.CharField(max_length=30)
-    course_id = models.IntegerField()
+    course_id = models.IntegerField (null=True)
     instructor = None
     ta_list = None
     lab_sections = None
@@ -174,8 +175,8 @@ class Course(models.Model):
 
 
 class Lab(models.Model):
-    lab_name = models.CharField(max_length=30)
-    lab_id = models.IntegerField()
+    lab_name = models.CharField(max_length=30, null=True)
+    lab_id = models.IntegerField(null=True)
     TA = None
 
     # getters and setters for course
@@ -199,10 +200,10 @@ class Lab(models.Model):
 
 
 class Assignment(models.Model):
-    topic = models.CharField(max_length=50)
-    startDate = models.DateField()
-    endDate = models.DateField()
-    content = models.CharField(max_length=200)
+    topic = models.CharField(max_length=50, null=True)
+    startDate = models.DateField( null=True)
+    endDate = models.DateField( null=True)
+    content = models.CharField(max_length=200, null=True)
     f = None
 
     def Assignment(self, topic, start, end, content, file):
@@ -241,5 +242,5 @@ class Assignment(models.Model):
 
 # for course table
 class Courses(models.Model):
-    name = models.CharField(max_length=300)
+    name = models.CharField(max_length=300, null=True)
     # content = models.TextField()

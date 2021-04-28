@@ -56,6 +56,8 @@ class LoginTest(TestCase):
         response = self.Client.post('/sign in/', {'username': 'user1', 'password': ''})
         self.assertFalse(response.context["password"], 'Password cannot be empty')
 
+# more unit tests
+
 
 # test for supervisor class
 class SupervisorTest(TestCase):
@@ -70,3 +72,4 @@ class InstructorTest(TestCase):
 # test for TA
 class TaTest(TestCase):
     pass
+
