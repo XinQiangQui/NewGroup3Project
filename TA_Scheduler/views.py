@@ -25,10 +25,6 @@ class CoursesView(View):
     def get(self, request):
         return render(request, "courses.html")
 
-  #  def courseview(request):
-#        all_courses_items = Courses.objects.all()
-
-  #      return render(request, "courses.html", {'all_courses': all_courses_items})
 
 
 class AdminView(View):
