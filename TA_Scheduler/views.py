@@ -9,27 +9,33 @@ from TA_Scheduler.models import Account, Instructor, Supervisor, TA
 
 class HomeView(View):
     def get(self, request):
+        return render(request, "home.html")
+
+
+class LoginView(View):
+    def get(self, request):
         return render(request, "login.html")
 
     def post(self, request):
         name = request.POST['name']
         password = request.POST['password']
-        if name=='user' and password=='user':
-            return render(request, "home.html", {"name": name, "password": password})
-        elif name=='admin' and password=='admin':
+        if name == 'user' and password == 'user':
+            return render(request, "login.html", {"name": name, "password": password})
+        elif name == 'admin' and password == 'admin':
             return render(request, "AdminP.html", {"name": name})
         else:
             return render(request, "login.html", {"message": "Information is incorrect"})
+
 
 class CoursesView(View):
     def get(self, request):
         return render(request, "courses.html")
 
 
-
 class AdminView(View):
     def get(self, request):
         return render(request, "AdminP.html")
+
 
 class New(View):
     def get(self, request):
