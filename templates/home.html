@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        h1{
+            background-color: white;
+
+        }
+        body{
+            background-image: url("https://uwm.edu/officeofresearch/wp-content/uploads/sites/91/2018/07/UWM-Innovation_Exterior-2.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        p{
+            font-family: sans-serif;
+            font-weight: bold;
+            background-color: white;
+
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
-    <div>
-        <p>This is the home page</p>
-        <h2>My name is {{ name }}</h2>
-        <h2>My password is {{ password }}</h2>
+    <h1>Welcome To TA_Scheduler App</h1>
+    <p>
+        This is an App developed by Group3 Lab 902.<br>
+        Please Click on the button below to login with the right information.<br>
+    </p>
+      <a href="login.html"><button>Login Page</button></a>
 
-        <a href="{% url 'login' %}}"> This is the login page</a>
-    </div>
+
 </body>
 </html>

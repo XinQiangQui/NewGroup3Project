@@ -4,7 +4,10 @@
 <head>
     <style>
    h1 {
-  background-color: green;
+  background-color:gray;
+       font-family: sans-serif;
+       font-size: 17px;
+
 }
 
 p {
@@ -12,12 +15,12 @@ p {
     font-family: sans-serif;
     font-size: 20px;
     text-align: center;
-    background-color: azure;
+    background-color: aquamarine;
 }
 
 
-div {
-     background-color: darkgray;
+body {
+     background-color: burlywood;
 
 
 }
@@ -29,7 +32,8 @@ div {
 </head>
 <body>
     <div>
-        <p>Welcome To Account Page</p>
+        <p>TA_Scheduler App</p>
+        <h1>You must have a registered account to be able to access this page.Please enter a valid input</h1>
         <form action="" method="post">
             {% csrf_token %}
             <h2>Enter Login Details: </h2>
@@ -38,7 +42,7 @@ div {
             <input type="text" id="name" name="name"><br>
             <!-- User password input -->
             <label for="password">Password:</label>
-            <input type="text" id="password" name="password"><br>
+            <input type="password" id="password" name="password"><br>
             <input type="submit" value="submit">
         </form>
     </div>
