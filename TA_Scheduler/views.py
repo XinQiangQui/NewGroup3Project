@@ -4,7 +4,6 @@ from django.views import View
 from django.views.generic import ListView
 from TA_Scheduler.models import Account, Instructor, Supervisor, TA
 
-from .models import Courses
 
 # Create your views here.
 
@@ -15,7 +14,6 @@ class HomeView(View):
     def post(self, request):
         name = request.POST['name']
         password = request.POST['password']
-        # need to fix
         if name=='user' and password=='user':
             return render(request, "home.html", {"name": name, "password": password})
         elif name=='admin' and password=='admin':
@@ -27,17 +25,21 @@ class CoursesView(View):
     def get(self, request):
         return render(request, "courses.html")
 
-    def courseview(request):
-        all_courses_items = Courses.objects.all()
+  #  def courseview(request):
+#        all_courses_items = Courses.objects.all()
 
         return render(request, "courses.html", {'all_courses': all_courses_items})
 
 
 def addcoursesview(request):
-    x = request.Post['name']
-    new_course = Courses(name=x)
-    new_course.save()
+
+#    x = request.Post['name']
+ #   new_course = Courses(name=x)
+  #  new_course.save()
+
     return HttpResponseRedirect('/TA_Scheduler/')
+
+
 
 def logout(self, request):
     return render(request, "login.html")
