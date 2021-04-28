@@ -28,22 +28,32 @@ class CoursesView(View):
   #  def courseview(request):
 #        all_courses_items = Courses.objects.all()
 
-        return render(request, "courses.html", {'all_courses': all_courses_items})
+  #      return render(request, "courses.html", {'all_courses': all_courses_items})
 
 
-def addcoursesview(request):
-
-#    x = request.Post['name']
- #   new_course = Courses(name=x)
-  #  new_course.save()
-
-    return HttpResponseRedirect('/TA_Scheduler/')
-
-
-
-def logout(self, request):
-    return render(request, "login.html")
+class AdminView(View):
+    def get(self, request):
+        return render(request, "AdminP.html")
 
 class New(View):
     def get(self, request):
         return render(request, 'newAccount.html')
+
+    def post(self, request):
+        name = request.POST['first_name']
+        lastname = request.POST['last_name']
+        email = request.POST['email']
+        phone_number = request.POST['phone']
+        address = request.POST['address']
+        password = request.POST['password']
+        status = request.POST['status']
+
+        tmp_user = None
+        if status == 'Supervisor':
+            tmp_user = Supervisor.supervisor(name, lastname, email, phone_number, address, password)
+        elif status == 'Instructor':
+            tmp_user = Instructor.instructor(name, lastname, email, phone_number, address, password)
+        else:
+            tmp_user = TA.ta(name, lastname, email, phone_number, address, password)
+
+        return render(request, "AdminP.html", {"user": tmp_user})

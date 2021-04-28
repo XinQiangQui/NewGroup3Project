@@ -1,88 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-        table{
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%
-        }
-        td,th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+   <head>
+      <meta charset="UTF-8">
+      <title>Course creator</title>
+      {% load static %}
+       <link rel="stylesheet" type="text/css" href="{% static 'admin/style.css' %}">
+   </head>
+   <body style= "border:black;">
+<p><strong>Course Creation</strong></p>
 
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <title>Course list</title>
-
-</head>
-<form action="/addCourse/" method ="post">
-    {% csrf_token %}
-        <input type="text" name="name">
-        <input type="submit" value="Add Course name">
-</form>
-<body>
-<div style="overflow-y: auto;">
-<table>
-  <tr>
-    <th>Courses</th>
-    <th>prerequisite</th>
-    <th>Description</th>
-  </tr>
-
-  <tr>
-    <td>CS 351</td>
-    <td>CS 251,MTH 231</td>
-    <td>Data structure and Algorithm</td>
-  </tr>
-  <tr>
-    <td>CS 337</td>
-    <td>CS 251</td>
-    <td>System Programming</td>
-  </tr>
-  <tr>
-    <td>CS 535</td>
-    <td>CS 351</td>
-    <td>Algorithm Design and Analysis</td>
-  </tr>
-  <tr>
-    <td>CS 537</td>
-    <td>CS 337</td>
-    <td>Introduction to OperatingSystem</td>
-  </tr>
-  <tr>
-    <td>CS 595</td>
-    <td>CS 351, CS361 and 6 credit </td>
-    <td>Capstone Project</td>
-  </tr>
-  <tr>
-    <td>EAS 200</td>
-    <td>Sophomore standing</td>
-    <td>None</td>
-  </tr>
-  <tr>
-    <td>MATH 231</td>
-    <td>MATH 221, MATH 180</td>
-    <td>Calculus II</td>
-  </tr>
-  <tr>
-    <td>CHEM 104</td>
-    <td>CHEM 102</td>
-    <td>General Chemistry and Qualitative Analysis</td>
-  </tr>
-
-</table>
- <ul>
-     {% for i in all_courses %}
-     <li>{{ i.name }}
-     </li>
-     {% endfor %}
- </ul>
-</div>
+      <form action="" method="post">
+         {% csrf_token %}
+          <p>
+             <input name="courseName" type="text" placeholder="Course Name" /><br />
+             <input name="courseID" type="text" placeholder="Course Number" /><br />
+          </p>
+         <p><input type="submit" /></p>
+      </form>
+    <img border = "0" src="https://www.clker.com/cliparts/q/O/s/c/U/8/logout-button-png.svg.hi.png" alt="logout button" width="125" height="50">
+    </a>
+   <br>
+   <a href="/supervisor"> Go back To Admin Page </a>
+         <div>
+         {%  for message in messages %}
+         <h3> {{message}}</h3>
+         {% endfor %}
+      </div>
 </body>
 </html>

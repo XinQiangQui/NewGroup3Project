@@ -12,7 +12,7 @@ class Account(models.Model):
     phone_number = models.IntegerField(null=True)
     home_address = models.CharField(max_length=100, null=True)
     password = models.CharField(max_length=20)
-    status = models.CharField(max_length=10, null=True)
+    status = models.CharField(max_length=20, null=True)
 
     # Getters and setters for all variables
     def get_name(self):
@@ -51,7 +51,16 @@ class Account(models.Model):
 
 # Child class
 class Supervisor(Account):
-    Account.status = 'Supervisor'
+
+    # create a supervisor
+    def supervisor(self, name, lastname, email, phone_number, address, password):
+        Account.name = name
+        Account.lastname = lastname
+        Account.email = email
+        Account.phone_number = phone_number
+        Account.home_address = address
+        Account.password = password
+        Account.status = 'Supervisor'
 
     # create a course
     def create_course(self, course_name, course_id, startingDate, endingDate,
@@ -88,7 +97,15 @@ class Supervisor(Account):
 
 
 class Instructor(Account):
-    Account.status = 'Instructor'
+    # create an Instructor
+    def instructor(self, name, lastname, email, phone_number, address, password):
+        Account.name = name
+        Account.lastname = lastname
+        Account.email = email
+        Account.phone_number = phone_number
+        Account.home_address = address
+        Account.password = password
+        Account.status = 'Instructor'
 
     # edit own contact information
     def edit(self):
@@ -112,7 +129,15 @@ class Instructor(Account):
 
 
 class TA(Account):
-    Account.status = 'TA'
+    # create an TA
+    def ta(self, name, lastname, email, phone_number, address, password):
+        Account.name = name
+        Account.lastname = lastname
+        Account.email = email
+        Account.phone_number = phone_number
+        Account.home_address = address
+        Account.password = password
+        Account.status = 'TA'
 
     # edit own contact information
     def edit(self):

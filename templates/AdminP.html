@@ -55,24 +55,36 @@
 
     <h4>Manage Course</h4>
 	<hr>
-	<a href="/">Create course</a>
+	<a href="/courses">Create course</a>
 	<table class="table class table-bordered table-striped table-hovered">
-
-        <form action="" method="post">
-         {% csrf_token %}
-          <p>
-             <input name="courseName" type="text" placeholder="Course Name" /><br />
-             <input name="courseID" type="text" placeholder="Course Number" /><br />
-          </p>
-         <p><input type="submit" /></p>
-      </form>
-    </a>
-   <br>
+		<thead>
+			<tr>
+				<th>Course Name</th>
+                <th>Course ID</th>
+				<th>Instructor</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for user in users %}
+			<tr>
+				<td>{{user.id}}</td>
+				<td><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+				{% if user.user_level == 9 %}
+				<td>Admin</td>
+				{% else %}
+				<td>Normal</td>
+				{%endif%}
+				<td><a href="/users/{{user.id}}/edit">Edit</a> | <a href="/users/{{user.id}}/delete">Delete</a></td>
+			</tr>
+			{%endfor%}
+		</tbody>
 	</table>
 
-    <h4>Manage Users</h4>
+    <h4>Assign Instructor to Course</h4>
 	<hr>
-	<a href="/newAccount">Add New User</a>
+	<a href="/courses">Assign Instructor</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
