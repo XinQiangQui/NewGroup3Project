@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Course2, Account, TA, Assignment, Instructor, Supervisor, Lab, Course, CourseSection
+from .models import Account, TA, Assignment, Instructor, Supervisor, Lab, Course, CourseSection
 
 # Register your models here.
-admin.site.register(Course2)
 admin.site.register(Account)
 admin.site.register(TA)
 admin.site.register(Supervisor)

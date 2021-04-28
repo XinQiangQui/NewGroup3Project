@@ -40,20 +40,31 @@ class New(View):
         return render(request, 'newAccount.html')
 
     def post(self, request):
-        name = request.POST['first_name']
-        lastname = request.POST['last_name']
-        email = request.POST['email']
-        phone_number = request.POST['phone']
-        address = request.POST['address']
-        password = request.POST['password']
-        status = request.POST['status']
 
-        tmp_user = None
-        if status == 'Supervisor':
-            tmp_user = Supervisor.supervisor(name, lastname, email, phone_number, address, password)
-        elif status == 'Instructor':
-            tmp_user = Instructor.instructor(name, lastname, email, phone_number, address, password)
+        # determine status
+        num = int(request.POST.get('status'))
+        if num == 8:
+            user = Supervisor()
+        elif num == 5:
+            user = Instructor()
         else:
-            tmp_user = TA.ta(name, lastname, email, phone_number, address, password)
+            user = TA()
 
-        return render(request, "AdminP.html", {"user": tmp_user})
+        user.name = request.POST.get('first_name')
+        user.lastname = request.POST.get('last_name')
+        user.email = request.POST.get('email')
+        user.phone_number = request.POST.get('phone')
+        user.home_address = request.POST.get('address')
+        user.status = request.POST.get('status')
+        user.save()
+
+        content = {
+            'name': user.name,
+            'lastname': user.lastname,
+            'email': user.email,
+            'phone_num': user.phone_number,
+            'address': user.home_address,
+            'status': user.status
+        }
+
+        return render(request, "AdminP.html", content)
