@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Create a new user</title>
+	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+	</style>
+</head>
+</head>
+<body>
+<div class="container">
+<a href="/">Logout</a> | <a href="/supervisor">Return</a>
+<hr>
+<h3>Add a new user</h3>
+<form action="" method="post">
+	{%csrf_token %}
+	First Name: <input type="text" name="first_name"required>
+	<br><br>
+	Last Name: <input type="text" name="last_name" required>
+	<br><br>
+    Email Address: <input type="email" name="email" required>
+	<br><br>
+    Phone number: <input type="number" name="phone" required>
+	<br><br>
+    Home Address: <input type="text" name="address" required>
+	<br><br>
+    <label for="status"><p>Choose status:</label>
+
+    <select name="status" id="status">
+        <option value="8">Supervisor</option>
+        <option value="5">Instructor</option>
+        <option value=2"">TA</option>
+    </select>
+	<input type="submit" value="Create">
+</form>
+</div>
+</body>
+</html>
