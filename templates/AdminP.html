@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container">
-	<a href="/users/{{user.id}}/edit">Edit your profile</a> | <a href="/">Logout</a>
+    <a href="/users/{{user.id}}/edit">Edit your profile</a> |<a href="/email">Email</a> | <a href="/">Logout</a>
 	<hr>
 	<h3>Welcome, Supervisor: {{name}} </h3>
 	<hr>
@@ -81,17 +81,15 @@
 
     <h4>Assign Instructor to Course</h4>
 	<hr>
-	<a href="/courses">Assign Instructor</a>
+	<a href="/instructor">Assign Instructor</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
 				<th>Name</th>
                 <th>Lastname</th>
 				<th>Email</th>
-				<th>Phone number</th>
-				<th>Home Address</th>
-				<th>Status</th>
-			</tr>
+				<th>Course</th>
+            </tr>
 		</thead>
 		<tbody>
 		{% for user in users %}
@@ -112,7 +110,36 @@
 	</table>
 
 
+ <h4>Assign TA to Lab</h4>
+	<hr>
+	<a href="/lab">Assign TA to Lab Section</a>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Lastname</th>
+				<th>Email</th>
+				<th>Lab Section</th>
 
+			</tr>
+		</thead>
+		<tbody>
+		{% for user in users %}
+			<tr>
+				<td>{{user.id}}</td>
+				<td><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+				{% if user.user_level == 9 %}
+				<td>Admin</td>
+				{% else %}
+				<td>Normal</td>
+				{%endif%}
+				<td><a href="/users/{{user.id}}/edit">Edit</a> | <a href="/users/{{user.id}}/delete">Delete</a></td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
 </div>
 
 

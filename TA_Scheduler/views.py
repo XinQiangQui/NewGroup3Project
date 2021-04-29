@@ -70,3 +70,18 @@ class New(View):
         }
 
         return render(request, "AdminP.html", content)
+
+
+class EmailView(View):
+    def get(self, request):
+        return render(request, "Email.html")
+
+
+class InstructorView(View):
+    def get(self, request):
+        return render(request, "instructor.html")
+
+
+class LabView(View):
+    def get(self, request):
+        return render(request, "lab.html")

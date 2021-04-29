@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Author : Xin Qiang
 
 
@@ -11,7 +12,7 @@ class Account(models.Model):
     email = models.EmailField(max_length=254, null=True)
     phone_number = models.IntegerField(null=True)
     home_address = models.CharField(max_length=100, null=True)
-    password = models.CharField(max_length=20, null=True)
+    password = "123"
     status = models.CharField(max_length=20, null=True)
 
     # Getters and setters for all variables
@@ -59,7 +60,7 @@ class Supervisor(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
+        # Account.password = 123
         Account.status = 'Supervisor'
 
     # create a course
@@ -104,7 +105,7 @@ class Instructor(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
+        # Account.password = 123
         Account.status = 'Instructor'
 
     # edit own contact information
@@ -136,7 +137,7 @@ class TA(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
+        # Account.password = 123
         Account.status = 'TA'
 
     # edit own contact information
@@ -155,7 +156,7 @@ class TA(Account):
 # course and lab class
 class Course(models.Model):
     name = models.CharField(max_length=30)
-    course_id = models.IntegerField (null=True)
+    course_id = models.IntegerField(null=True)
     instructor = None
     ta_list = None
     lab_sections = None
@@ -226,8 +227,8 @@ class Lab(models.Model):
 
 class Assignment(models.Model):
     topic = models.CharField(max_length=50, null=True)
-    startDate = models.DateField( null=True)
-    endDate = models.DateField( null=True)
+    startDate = models.DateField(null=True)
+    endDate = models.DateField(null=True)
     content = models.CharField(max_length=200, null=True)
     f = None
 
@@ -265,15 +266,16 @@ class Assignment(models.Model):
         pass
 
 
-class CourseSection(models.Model):
-    """
+""""
+#class CourseSection(models.Model):
+
     Represents an Abstract Course Section (section 201 of CS361) which may have multiple Lab Sections
     associated to it.
-    """
+
 
     #course_id is bad!!List things from need to input to optional/default
-    course_section_id = models.AutoField('Course Section ID', primary_key=True)
-    course_section_code = models.CharField('Course Section Code', blank=False, max_length=3)
+   # course_section_id = models.AutoField('Course Section ID', primary_key=True)
+   # course_section_code = models.CharField('Course Section Code', blank=False, max_length=3)
     lecture_days = models.CharField('Lecture Day(s)', blank=True, max_length=6)
     lecture_time = models.TextField('Lecture Time', blank=True, max_length=12)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE, blank=False, help_text="Course ID")
@@ -283,9 +285,10 @@ class CourseSection(models.Model):
     ta_ids = models.ManyToManyField(User, related_name='section_assign', blank=True,
                                     help_text='Ta\'s Assigned to this Course Section')
 
-    class Meta:
+ #   class Meta:
         # Adds a unique constraint combination on the two fields
-        unique_together = ['course_section_code', 'course_id']
+      #  unique_together = ['course_section_code', 'course_id']
 
-    def __str__(self):
-        return f'{self.course_id.course_code} section {self.course_section_code} [{self.instructor_id}]'
+    #def __str__(self):
+        #return f'{self.course_id.course_code} section {self.course_section_code} [{self.instructor_id}]'
+"""
