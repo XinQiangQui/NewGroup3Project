@@ -4,69 +4,42 @@ from django.views import View
 from django.views.generic import ListView
 from TA_Scheduler.models import Account, Instructor, Supervisor, TA
 
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
-class HomeView(View):
-    def get(self, request):
-        return render(request, "home.html")
-
 
 class LoginView(View):
-    def get(self, request):
-        return render(request, "login.html")
+    @staticmethod
+    def login(self, request):
+        """
+        if request.method == 'POST':
+            form = AuthenticationForm(data=request.POST)
+            if form.is_valid():
+                user = form.get_user()
+                login(request, user)
+                username = request.POST['username']
+                if username
 
-    def post(self, request):
-        name = request.POST['name']
-        password = request.POST['password']
-        if name == 'user' and password == 'user':
-            return render(request, "login.html", {"name": name, "password": password})
-        elif name == 'admin' and password == 'admin':
-            return render(request, "AdminP.html", {"name": name})
-        else:
-            return render(request, "login.html", {"message": "Information is incorrect"})
+        """
+        pass
 
+    def create_account(self, request):
+        pass
 
-class CoursesView(View):
-    def get(self, request):
-        return render(request, "courses.html")
-
-
-class AdminView(View):
-    def get(self, request):
-        return render(request, "AdminP.html")
+    def forgot_password(self, request):
+        pass
 
 
-class New(View):
-    def get(self, request):
-        return render(request, 'newAccount.html')
+def admin_view(request):
+    pass
 
-    def post(self, request):
 
-        # determine status
-        num = int(request.POST.get('status'))
-        if num == 8:
-            user = Supervisor()
-        elif num == 5:
-            user = Instructor()
-        else:
-            user = TA()
+def ta_view(request):
+    pass
 
-        user.name = request.POST.get('first_name')
-        user.lastname = request.POST.get('last_name')
-        user.email = request.POST.get('email')
-        user.phone_number = request.POST.get('phone')
-        user.home_address = request.POST.get('address')
-        user.status = request.POST.get('status')
-        user.save()
 
-        content = {
-            'name': user.name,
-            'lastname': user.lastname,
-            'email': user.email,
-            'phone_num': user.phone_number,
-            'address': user.home_address,
-            'status': user.status
-        }
+def instructor_view(request):
+    pass
 
-        return render(request, "AdminP.html", content)

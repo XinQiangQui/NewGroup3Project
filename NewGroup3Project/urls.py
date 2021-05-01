@@ -18,6 +18,7 @@ from django.urls import path
 from TA_Scheduler.views import HomeView, CoursesView, New, AdminView, LoginView
 
 urlpatterns = [
+
     path("admin/", admin.site.urls),
     path('', HomeView.as_view()),
     path('courses/', CoursesView.as_view()),
