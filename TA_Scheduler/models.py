@@ -152,6 +152,7 @@ class TA(Account):
     def display(self):
         pass
 
+# needed?
 
 # course and lab class
 class Course(models.Model):
