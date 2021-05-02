@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <title>Course creator</title>
       {% load static %}
-       <link rel="stylesheet" type="text/css" href="{% static 'admin/style.css' %}">
+       <link rel="stylesheet" type="text/css" href="{% static 'local/style.css' %}">
    </head>
    <body style= "border:black;">
 <p><strong>Create Course</strong></p>
@@ -12,8 +12,10 @@
       <form action="" method="post">
          {% csrf_token %}
           <p>
-             <input name="courseName" type="text" placeholder="Course Name" /><br />
-             <input name="courseID" type="text" placeholder="Course ID" /><br />
+             <input name="courseName" type="text" placeholder="Course Name", required/><br />
+              <input name="courseNumber" type="text" placeholder="Course Number" , required/><br />
+              <input name="courseSemester" type="text" placeholder="Course Semester" , required/><br />
+
           </p>
          <p><input type="submit" /></p>
       </form>
@@ -25,5 +27,8 @@
          <h3> {{message}}</h3>
          {% endfor %}
       </div>
+   {% for course  in courses %}
+      {{ course.course }}
+   {% endfor %}
 </body>
 </html>

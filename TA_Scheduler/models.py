@@ -64,9 +64,9 @@ class Supervisor(Account):
         Account.status = 'Supervisor'
 
     # create a course
-    def create_course(self, course_name, course_id, startingDate, endingDate,
-                      instructor, num_lab, TA_list):
-        pass
+    # def create_course(self, course_name, course_id, startingDate, endingDate,
+    #                instructor, num_lab, TA_list):
+    # pass
 
     # create account
     def create_account(self, account):
@@ -154,50 +154,10 @@ class TA(Account):
 
 
 # course and lab class
-class Course(models.Model):
+class Courses(models.Model):
     name = models.CharField(max_length=30)
-    course_id = models.IntegerField(null=True)
-    instructor = None
-    ta_list = None
-    lab_sections = None
-
-    # getters and setters for course
-    def get_name(self):
-        return self.name
-
-    def set_name(self, newName):
-        self.name = newName
-
-    def get_course_id(self):
-        return self.id
-
-    def set_course_id(self, newID):
-        self.course_id = newID
-
-    def get_instructor(self):
-        return self.instructor
-
-    def set_instructor(self, instructor):
-        self.instructor = instructor
-
-    # other methods
-    def add_ta(self, Ta):
-        pass
-
-    def remove_ta(self, ta):
-        pass
-
-    def display_ta(self):
-        pass
-
-    def add_lab(self, lab):
-        pass
-
-    def remove_lab(self, lab_id):
-        pass
-
-    def display_lab(self):
-        pass
+    cid = models.IntegerField(null=True)
+    semester = models.CharField(max_length=20, null=True)
 
 
 class Lab(models.Model):
@@ -264,31 +224,3 @@ class Assignment(models.Model):
     # upload file
     def upload_file(self, file):
         pass
-
-
-""""
-#class CourseSection(models.Model):
-
-    Represents an Abstract Course Section (section 201 of CS361) which may have multiple Lab Sections
-    associated to it.
-
-
-    #course_id is bad!!List things from need to input to optional/default
-   # course_section_id = models.AutoField('Course Section ID', primary_key=True)
-   # course_section_code = models.CharField('Course Section Code', blank=False, max_length=3)
-    lecture_days = models.CharField('Lecture Day(s)', blank=True, max_length=6)
-    lecture_time = models.TextField('Lecture Time', blank=True, max_length=12)
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, blank=False, help_text="Course ID")
-    instructor_id = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                      help_text="Instructor ID")
-
-    ta_ids = models.ManyToManyField(User, related_name='section_assign', blank=True,
-                                    help_text='Ta\'s Assigned to this Course Section')
-
- #   class Meta:
-        # Adds a unique constraint combination on the two fields
-      #  unique_together = ['course_section_code', 'course_id']
-
-    #def __str__(self):
-        #return f'{self.course_id.course_code} section {self.course_section_code} [{self.instructor_id}]'
-"""

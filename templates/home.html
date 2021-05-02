@@ -31,6 +31,16 @@
         }
     </style>
     <meta charset="UTF-8">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
     <title>Home</title>
 </head>
 <body>
