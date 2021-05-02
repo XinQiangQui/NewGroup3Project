@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
-from TA_Scheduler.models import Account, Instructor, Supervisor, TA
+from TA_Scheduler.models import Account, Instructor, Supervisor, TA, Course
+from django.contrib import messages
 
 
 # Create your views here.
@@ -30,6 +31,19 @@ class LoginView(View):
 class CoursesView(View):
     def get(self, request):
         return render(request, "courses.html")
+
+    def post(self, request, ):
+        if request.method == 'POST':
+            course_name = request.POST['courseName']
+            number = request.POST['courseID']
+            course_semester = request.POST['courseSemester']
+            course = Course.objects.create(name=course_name, cId=number,
+                                           semester=course_semester)
+            messages.success(request, 'COURSE SUCCESSFULLY CREATED')
+            return render(request, 'AdminP.html')
+        else:
+
+            return redirect('/courses')
 
 
 class AdminView(View):

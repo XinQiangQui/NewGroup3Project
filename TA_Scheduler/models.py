@@ -156,10 +156,8 @@ class TA(Account):
 # course and lab class
 class Course(models.Model):
     name = models.CharField(max_length=30)
-    course_id = models.IntegerField(null=True)
-    instructor = None
-    ta_list = None
-    lab_sections = None
+    cId = models.IntegerField(null=True)
+    semester = models.CharField(default='DEFAULT_VALUE', max_length=10)
 
     # getters and setters for course
     def get_name(self):
