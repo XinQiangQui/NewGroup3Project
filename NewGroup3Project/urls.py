@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from TA_Scheduler import views
-from TA_Scheduler.views import AdminView, LoginView
+from TA_Scheduler.views import AdminView, LoginView, NewAccount
 
 urlpatterns = [
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('', LoginView.as_view(), name='login'),
     path('supervisor/', AdminView.as_view(), name='supervisor'),
     # should access dictionary instead of username
-    path('edit_page/<username>/', views.edit_page, name='edit_account')
+    path('edit_page/<username>/', views.edit_page, name='edit_account'),
+    path('newAccount/', NewAccount.as_view())
 
 ]

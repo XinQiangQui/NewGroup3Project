@@ -22,6 +22,7 @@ def get_all_account():
         formatted_account.append(tmp_account)
     return formatted_account
 
+
 def get_account(username):
     tmp = get_all_account()
 
@@ -74,10 +75,25 @@ def edit_page(request, username):
     return render(request, 'edit_account.html', user)
 
 
+class NewAccount(View):
+    def get(self, request):
+        return render(request, 'newAccount.html')
+
+    def post(self, request):
+        tmp = Account(name=request.POST["first_name"],
+                      lastname=request.POST["last_name"],
+                      email=request.POST["email"],
+                      phone_number=request.POST["phone"],
+                      home_address=request.POST["address"],
+                      status=request.POST["status"])
+        tmp.save()
+
+        return render(request, 'AdminP.html')
+
+
 class EditView(View):
     def get(self, request):
         return render(request, 'edit_account.html')
-
 
 
 def ta_view(request):
