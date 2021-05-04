@@ -26,6 +26,7 @@ body{
     left: 65%;
     transform: translate(-50%,-50%);
     color:lightgrey;
+
 }
 .login-box h1{
     float: left;
@@ -33,6 +34,7 @@ body{
     border-bottom: 6px ;
     margin-bottom: 50px;
     padding: 13px 0;
+    border-bottom: 1px Solid #FFd700;
 }
 .textbox{
     width: 100%;
