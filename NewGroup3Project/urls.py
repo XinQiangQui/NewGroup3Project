@@ -15,18 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from TA_Scheduler.views import HomeView, CoursesView, New, AdminView, LoginView, EmailView,InstructorView,LabView
+from TA_Scheduler import views
+from TA_Scheduler.views import AdminView, LoginView, NewAccount
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', HomeView.as_view()),
-    path('courses/', CoursesView.as_view()),
-    path('newAccount/', New.as_view()),
-    path('supervisor/', AdminView.as_view()),
-    path('login/', LoginView.as_view()),
-    path('email/', EmailView.as_view()),
-    path('instructor/', InstructorView.as_view()),
-    path('lab/', LabView.as_view()),
 
+    path("admin/", admin.site.urls),
+    path('', LoginView.as_view(), name='login'),
+    path('supervisor/', AdminView.as_view(), name='supervisor'),
+    # should access dictionary instead of username
+    path('edit_page/<username>/', views.edit_page, name='edit_account'),
+    path('newAccount/', NewAccount.as_view())
 
 ]
