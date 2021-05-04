@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
-from TA_Scheduler.models import Account
+from TA_Scheduler.models import Account, Course
+from django.contrib import messages
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
@@ -40,23 +41,24 @@ def log_out(request):
 # done
 class LoginView(View):
     def get(self, request):
-        return render(request, 'login.html')
+        return render(request, "login.html")
 
+    #messy
     def post(self, request):
         name = request.POST["name"]
         password = request.POST["password"]
 
-        tmp = get_all_account()
+        account = Account.objects.all()
 
-        for i in tmp:
-            account_name = i.get("name")
-            account_password = i.get("password")
-            account_status = i.get("status")
+        for i in account:
+            account_name = i.name
+            account_password = i.password
+            account_status = i.status
 
             if name == account_name and password == account_password:
-
+                request.session["username"] = account_name
                 if account_status == 'Supervisor':
-                    return render(request, 'AdminP.html', i)
+                    return render(request, 'AdminP.html', {"account":account})
                 elif account_status == 'Instructor':
                     return render(request, 'Instructor.html', i)
                 else:
@@ -66,9 +68,17 @@ class LoginView(View):
 
 
 class AdminView(View):
+    #messy
     def get(self, request):
-        return render(request, 'AdminP.html')
+        account = Account.objects.all()
+        for user in account:
+            print(user.name)
+        return render(request, 'AdminP.html', {"account": account})
 
+    #messy
+    def post(self, request):
+        accounts = Account.objects.all()
+        return render(request, 'AdminP.html', {"accounts": accounts})
 
 def edit_page(request, username):
     user = get_account(username)
@@ -90,6 +100,23 @@ class NewAccount(View):
 
         return render(request, 'AdminP.html')
 
+
+class CoursesView(View):
+    def get(self, request):
+        return render(request, "courses.html")
+
+    def post(self, request, ):
+        if request.method == 'POST':
+            course_name = request.POST['courseName']
+            number = request.POST['courseID']
+            course_semester = request.POST['courseSemester']
+            course = Course.objects.create(name=course_name, cId=number,
+                                           semester=course_semester)
+            messages.success(request, 'COURSE SUCCESSFULLY CREATED')
+            return render(request, 'AdminP.html')
+        else:
+
+            return redirect('/courses')
 
 class EditView(View):
     def get(self, request):
