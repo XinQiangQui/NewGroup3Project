@@ -8,8 +8,6 @@ admin.site.register(Supervisor)
 admin.site.register(Instructor)
 admin.site.register(Assignment)
 admin.site.register(Lab)
-
-# difference between 2
 admin.site.register(Course)
 admin.site.register(CourseSection)
 

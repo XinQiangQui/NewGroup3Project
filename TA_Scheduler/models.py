@@ -11,7 +11,7 @@ class Account(models.Model):
     email = models.EmailField(max_length=254, null=True)
     phone_number = models.IntegerField(null=True)
     home_address = models.CharField(max_length=100, null=True)
-    password = models.CharField(max_length=20, null=True)
+    password = "123"
     status = models.CharField(max_length=20, null=True)
 
     # Getters and setters for all variables
@@ -45,6 +45,12 @@ class Account(models.Model):
     def set_home_address(self, newAddress):
         self.home_address = newAddress
 
+    def get_password(self):
+        return self.password
+
+    def set_password(self, newPassword):
+        self.password = newPassword
+
     def get_status(self):
         return self.status
 
@@ -59,7 +65,6 @@ class Supervisor(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
         Account.status = 'Supervisor'
 
     # create a course
@@ -104,7 +109,6 @@ class Instructor(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
         Account.status = 'Instructor'
 
     # edit own contact information
@@ -136,7 +140,6 @@ class TA(Account):
         Account.email = email
         Account.phone_number = phone_number
         Account.home_address = address
-        Account.password = 123
         Account.status = 'TA'
 
     # edit own contact information
@@ -150,8 +153,6 @@ class TA(Account):
     # display public information
     def display(self):
         pass
-
-# needed?
 
 # course and lab class
 class Course(models.Model):
