@@ -29,31 +29,23 @@
 	{%csrf_token %}
     <label for="instructor"><p>Choose instructor:</label>
 
-    <select name="instructor" id="instructor">
-      <!--  <option value="Supervisor">Supervisor</option>
-        <option value="TA">TA</option>-->
-         <option value="Instructor">Instructor</option>
-         {% for Account in InstructorList %}
-            <option value="{{Account.id}}">{{ Account.username }}</option>
-            {% endfor %}
+    <select name="instructor_name" id="instructor_name">
+        {% for instructor in accounts %}
+            <option value={{ instructor.name }}>{{ instructor.name }}</option>
+        {%endfor%}
     </select>
 
-    <label for="Course"><p>Choose Course:</label>
+    <label for="course_name"><p>Choose course:</label>
 
-    <select name="course" id="course">
-                 <option value="tbd">Select a Course</option>
+    <select name="course_name" id="course_name">
         {% for course in courses %}
-                     <option value="{{ Section.id }}">{{ Section.course.name}} : {{ Section.number }}</option>
-        {% endfor %}
+            <option value={{ course.name }}>{{ course.name }}</option>
+        {%endfor%}
     </select>
-	<input type="submit" value="Create">
+
+	<input type="submit" value="Assign">
 </form>
 </div>
- <div>
-         {%  for message in messages %}
-         <h3> {{message}}</h3>
-         {% endfor %}
-      </div>
 <div>
 
 <table_list>
