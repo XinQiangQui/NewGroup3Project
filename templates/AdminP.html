@@ -12,11 +12,13 @@
 		font-weight:bold;
 		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
 		}
+
+
 	</style>
 </head>
 <body>
 <div class="container">
-	<a href="/edit_page/{{name}}">Edit your profile</a> | <a href="/">Logout</a>
+	<a href="/edit_page">Edit your profile</a> | <a href="/">Logout</a>
 	<hr>
 	<h3>Welcome, {{name}} </h3>
 	<hr>
@@ -35,19 +37,19 @@
 				<th>Status</th>
 			</tr>
 		</thead>
-		<tbody>
-		{% for user in tmp %}
-			<tr>
-				<td>{{user.name}}</td>
-				<td>{{user.lastname }}</td>
-				<td>{{user.email}}</td>
-				<td>{{user.phone_number}}</td>
-                <td>{{user.home_address}}</td>
-                <td>{{user.status}}</td>
-				<td><a href="/users/{{user.id}}/edit">Edit</a> | <a href="/users/{{user.id}}/delete">Delete</a></td>
-			</tr>
-			{%endfor%}
-		</tbody>
+        <tbody>
+            {%for user in accounts %}
+            <tr>
+				    <td>{{user.name}}</td>
+				    <td>{{user.lastname }}</td>
+				    <td>{{user.email}}</td>
+				    <td>{{user.phone_number}}</td>
+                    <td>{{user.home_address}}</td>
+                    <td>{{user.status}}</td>
+				    <td><a href="">Edit</a> | <a href="">Delete</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
 	</table>
 
     <h4>Manage Course</h4>
@@ -58,22 +60,16 @@
 			<tr>
 				<th>Course Name</th>
                 <th>Course ID</th>
-				<th>Instructor</th>
+				<th>Semester</th>
 			</tr>
 		</thead>
 		<tbody>
-		{% for user in users %}
+		{% for course in courses %}
 			<tr>
-				<td>{{user.id}}</td>
-				<td><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
-				<td>{{user.email}}</td>
-				<td>{{user.created_at}}</td>
-				{% if user.user_level == 9 %}
-				<td>Admin</td>
-				{% else %}
-				<td>Normal</td>
-				{%endif%}
-				<td><a href="/users/{{user.id}}/edit">Edit</a> | <a href="/users/{{user.id}}/delete">Delete</a></td>
+                <td>{{course.name}}</td>
+                <td>{{course.cId}}</td>
+                <td>{{course.semester}}</td>
+                <td><a href="">Edit</a> | <a href="">Delete</a></td>
 			</tr>
 			{%endfor%}
 		</tbody>
@@ -81,16 +77,41 @@
 
     <h4>Assign Instructor to Course</h4>
 	<hr>
-	<a href="/courses">Assign Instructor</a>
+	<a href="/assign_instructor_to_course">Assign Instructor</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
 				<th>Name</th>
                 <th>Lastname</th>
-				<th>Email</th>
-				<th>Phone number</th>
-				<th>Home Address</th>
-				<th>Status</th>
+				<th>Course</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for course in courses %}
+			<tr>
+				<td>{{course.instructor.name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.created_at}}</td>
+				{% if user.user_level == 9 %}
+				<td>Admin</td>
+				{% else %}
+				<td>Normal</td>
+				{%endif%}
+				<td><a href="/users/{{user.id}}/edit">Edit</a></td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+
+    <h4>Assign TA to Lab</h4>
+	<hr>
+	<a href="/assign_ta_to_lab">Assign TA</a>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Lastname</th>
+				<th>Lab</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -110,7 +131,6 @@
 			{%endfor%}
 		</tbody>
 	</table>
-
 
 
 </div>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Assign TA to Lab</title>
+	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+
+    table_list {
+        float: right;
+        width:45%
+    }
+	</style>
+</head>
+</head>
+<body>
+<div class="container">
+<a href="/">Logout</a> | <a href="/supervisor">Return</a>
+
+<h3>Assign Instructor to Course</h3>
+<form action="" method="post">
+	{%csrf_token %}
+    <label for="ta"><p>Choose TA:</label>
+
+    <select name="ta" id="ta">
+        <option value="Supervisor">Supervisor</option>
+        <option value="Instructor">Instructor</option>
+        <option value="TA">TA</option>
+    </select>
+
+    <label for="lab"><p>Choose lab:</label>
+
+    <select name="lab" id="lab">
+        <option value="Supervisor">Supervisor</option>
+        <option value="Instructor">Instructor</option>
+        <option value="TA">TA</option>
+    </select>
+	<input type="submit" value="Create">
+</form>
+</div>
+<div>
+
+<table_list>
+    <h4>Labs</h4>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Lab Name</th>
+                <th>Lab ID</th>
+				<th>Semester</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for course in courses %}
+			<tr>
+                <td>{{course.name}}</td>
+                <td>{{course.cId}}</td>
+                <td>{{course.semester}}</td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+</table_list>
+
+    <table_list>
+    <h3>TAs</h3>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Name</th>
+                <th>Lastname</th>
+			</tr>
+		</thead>
+        <tbody>
+            {%for user in accounts %}
+            <tr>
+				    <td>{{user.name}}</td>
+				    <td>{{user.lastname }}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+	</table>
+</table_list>
+</div>
+
+</body>
+</html>

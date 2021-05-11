@@ -1,29 +1,42 @@
- m kp[<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <title>Course creator</title>
-      {% load static %}
-       <link rel="stylesheet" type="text/css" href="{% static 'admin/style.css' %}">
-   </head>
-   <body style= "border:black;">
-<p><strong>Create Course</strong></p>
 
-      <form action="" method="post">
-         {% csrf_token %}
-          <p>
-             <input name="courseName" type="text" placeholder="Course Name" /><br />
-             <input name="courseID" type="text" placeholder="Course ID" /><br />
-          </p>
-         <p><input type="submit" /></p>
-      </form>
-      </a>
-   <br>
-   <a href="/supervisor"><button>Go back To Admin Page</button>  </a>
-         <div>
-         {%  for message in messages %}
-         <h3> {{message}}</h3>
-         {% endfor %}
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Create a new user</title>
+	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+	</style>
+</head>
+
+<body>
+<div class="container">
+<a href="/">Logout</a> | <a href="/supervisor">Return</a>
+<hr>
+<h3>Add a new course</h3>
+<form action="" method="post">
+	{%csrf_token %}
+	Course Name: <input type="text" name="course_name" required>
+	<br><br>
+	Course ID: <input type="text" name="course_ID" required>
+	<br><br>
+    <label for="semester"><p>Choose semester:</label>
+
+    <select name="semester" id="semester">
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Fall">Fall</option>
+        <option value="Winter">Winter</option>
+    </select>
+	<input type="submit" value="Create">
+</form>
+</div>
 </body>
 </html>
