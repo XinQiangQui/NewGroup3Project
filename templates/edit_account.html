@@ -5,8 +5,26 @@
     <title>Edit page</title>
 </head>
 <body>
-    <h1> This is the edit page</h1>
-    <h1> the name is {{ name }}</h1>
-    <a href="/supervisor"><button>Go back To Admin Page</button>  </a>
+    <h1> Edit page</h1>
+    <p><strong>Pre-existing info:</strong></p>
+{% if not dne %}
+<p>{{ user_obj.office }} </p>
+<p>{{ user_obj.phone_num }} </p>
+<p>{{ user_obj.office_hours }} </p>
+    <p>{{ user_obj.email }} </p>
+{% endif %}
+<p>
+     <form action="" method="post">
+         <p><strong>Edit Your Personal Information:</strong></p>
+         <p>{% csrf_token %} <input name="office" type="text" placeholder="Office Location" />
+             <br /> <input name="phone_num" type="text" placeholder="Phone number" />
+             <br /> <input name="office_hours" type="text" placeholder="Office Hours" />
+             <br /> <input name="email" type="text" placeholder="Email" />
+         </p>
+
+         <p><input type="submit" /></p>
+</form>
+    <br>
+      <a href="/supervisor"><button>Go back To Admin Page</button>  </a>
 </body>
 </html>

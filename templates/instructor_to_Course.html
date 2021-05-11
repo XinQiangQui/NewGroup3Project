@@ -30,21 +30,30 @@
     <label for="instructor"><p>Choose instructor:</label>
 
     <select name="instructor" id="instructor">
-        <option value="Supervisor">Supervisor</option>
-        <option value="Instructor">Instructor</option>
-        <option value="TA">TA</option>
+      <!--  <option value="Supervisor">Supervisor</option>
+        <option value="TA">TA</option>-->
+         <option value="Instructor">Instructor</option>
+         {% for Account in InstructorList %}
+            <option value="{{Account.id}}">{{ Account.username }}</option>
+            {% endfor %}
     </select>
 
-    <label for="course"><p>Choose course:</label>
+    <label for="Course"><p>Choose Course:</label>
 
     <select name="course" id="course">
-        <option value="Supervisor">Supervisor</option>
-        <option value="Instructor">Instructor</option>
-        <option value="TA">TA</option>
+                 <option value="tbd">Select a Course</option>
+        {% for course in courses %}
+                     <option value="{{ Section.id }}">{{ Section.course.name}} : {{ Section.number }}</option>
+        {% endfor %}
     </select>
 	<input type="submit" value="Create">
 </form>
 </div>
+ <div>
+         {%  for message in messages %}
+         <h3> {{message}}</h3>
+         {% endfor %}
+      </div>
 <div>
 
 <table_list>

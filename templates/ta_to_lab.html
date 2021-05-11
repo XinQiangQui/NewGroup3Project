@@ -24,23 +24,24 @@
 <div class="container">
 <a href="/">Logout</a> | <a href="/supervisor">Return</a>
 
-<h3>Assign Instructor to Course</h3>
+<h3>Assign TA to lab Sections</h3>
 <form action="" method="post">
 	{%csrf_token %}
     <label for="ta"><p>Choose TA:</label>
+ <option value="tbd">Tas</option>
+             {% for Account in TaList %}
+                  <option value="{{Account.name}}">{{ Account.user}}</option>
+            {% endfor %}
 
     <select name="ta" id="ta">
-        <option value="Supervisor">Supervisor</option>
-        <option value="Instructor">Instructor</option>
+        <!-- Create a Ta list-->
         <option value="TA">TA</option>
     </select>
 
     <label for="lab"><p>Choose lab:</label>
 
     <select name="lab" id="lab">
-        <option value="Supervisor">Supervisor</option>
-        <option value="Instructor">Instructor</option>
-        <option value="TA">TA</option>
+        <option value="lab">Lab Sections</option>
     </select>
 	<input type="submit" value="Create">
 </form>
@@ -58,11 +59,13 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for course in courses %}
+
+		{% for lab in labs %}
 			<tr>
                 <td>{{course.name}}</td>
                 <td>{{course.cId}}</td>
                 <td>{{course.semester}}</td>
+                <td>{{ labs }}</td>
 			</tr>
 			{%endfor%}
 		</tbody>

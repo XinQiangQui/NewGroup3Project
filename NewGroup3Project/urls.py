@@ -33,6 +33,7 @@ urlpatterns = [
     path('assign_ta_to_lab/', TaToCourse.as_view(), name='assign_to_lab'),
     path('newAccount/', NewAccount.as_view()),
     path('courses/', CoursesView.as_view()),
-    path('logout/', log_out, name="logout")
+    path('logout/', log_out, name="logout"),
+    path('Instructors/', views.Personal_Info_Instructor, name='Personal_Info_Instructor')
 
 ]

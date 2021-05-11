@@ -89,7 +89,7 @@
 		<tbody>
 		{% for course in courses %}
 			<tr>
-				<td>{{course.instructor.name}}</td>
+				<td>{{user.name}}</td>
 				<td>{{user.email}}</td>
 				<td>{{user.created_at}}</td>
 				{% if user.user_level == 9 %}
