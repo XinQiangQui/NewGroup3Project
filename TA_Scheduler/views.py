@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from TA_Scheduler.models import Account, Course, PersonalInfo, LabSection
-
+from TA_Scheduler.models import Account, Course, PersonalInfo, LabSection  # Supervisor, #Instructor, TA
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate
 
@@ -60,9 +59,13 @@ def edit_page(request):
 
 class NewAccount(View):
     def get(self, request):
-        if request.session.get("username"):
-            return render(request, 'newAccount.html')
-        return render(request, 'Login.html')
+        # create a list
+        TaList = Account.objects.filter(status='Ta')
+        InstructorList = Account.objects.filter(status='Instructor')
+        return render(request, 'newAccount.html', {'TaList': TaList, 'InstructorList': InstructorList})
+
+    # return render(request, 'newAccount.html')
+    # return render(request, 'Login.html')
 
     def post(self, request):
         # create account
@@ -71,7 +74,7 @@ class NewAccount(View):
                                      email=request.POST["email"],
                                      phone_number=request.POST["phone"],
                                      home_address=request.POST["address"],
-                                     password=request.POST["password"],
+                                     # password=request.POST["password"],
                                      status=request.POST["status"])
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
@@ -82,8 +85,12 @@ class NewAccount(View):
 class CoursesView(View):
     def get(self, request):
         if request.session.get("username"):
-            return render(request, 'courses.html')
-        return render(request, "Login.html")
+            TaList = Account.objects.filter(Status='TA')
+            InstructorList = Account.objects.filter(Status='Instructor')
+            return render(request, 'courses.html', {'TaList': TaList, 'InstructorList': InstructorList})
+            # return render(request, 'courses.html')
+
+    # return render(request, "Login.html")
 
     def post(self, request):
         course = Course.objects.create(name=request.POST["course_name"],
@@ -94,7 +101,6 @@ class CoursesView(View):
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
                                                "username": request.session.get("username")})
-
 
 
 # not yet implemented
@@ -111,21 +117,26 @@ class EditView(View):
 class InstructorToCourse(View):
     def get(self, request):
         if request.session.get("username"):
-            accounts = Account.objects.filter(status='Instructor')
-            return render(request, 'instructor_to_course.html', {"accounts": accounts,
-                                                                 "courses": Course.objects.all()})
-        return render(request, 'Login.html')
+            # LabSectionList = Section.Object.all()
+            TaList = Account.objects.filter(status='TA')
+            InstructorList = Account.objects.filter(status='Instructor')
+            return render(request, 'instructor_to_Course.html', {'TaList': TaList, 'InstructorList': InstructorList})
+        # accounts = Account.objects.filter(status='Instructor').all()
+        # return render(request, 'instructor_to_Course.html', {"accounts": accounts,
+        #  "courses": Course.objects.all()})
+        # return render(request, 'Login.html')
 
     def post(self, request):
-        instructor_name = request.POST["instructor_name"]
-        course_name = request.POST["course_name"]
+        instructor_name = request.POST["name"]
+        course_id = request.POST["course_id"]
         instructor = Account.objects.filter(name=instructor_name)
-        course = Course.objects.filter(name=course_name)
+        course = Course.objects.filter(cId=course_id)
         course.instructor = instructor
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
                                                "username": request.session.get("username")})
+
 
 class TaToCourse(View):
     def get(self, request):
