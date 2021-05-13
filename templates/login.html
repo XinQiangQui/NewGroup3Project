@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+     <meta charset="UTF-8">
+    <title>Login</title>
+ <style>
+        h1 {
+           color: black;
+           font-family: sans-serif;
+            font-size: 20px;
+            text-align: center;
+            background-color: azure;
+        }
+
+        body {
+		    color:black;
+		    font-size:16px;
+		    font-weight:bold;
+		    background-image: url("https://uwm.edu/socialwelfare/wp-content/uploads/sites/56/2015/09/photo-fountain.jpg");
+		}
+
+        div{
+            text-align: center;
+            margin: 180px  50px 75px 50px;
+        }
+
+
+
+</style>
+
 </head>
-<body>
-$END$
-</body>
+ <body>
+
+          <h1>Welcome To Account Page</h1>
+       <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2>Enter Login Details: </h2>
+            <!-- User name input -->
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name"><br/>
+            <!-- User password input -->
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password"><br/>
+            <br/>
+               <input type="submit" value="login">
+                <!-- Forget password button does not work yet -->
+                <button>Forget Password</button>
+        </form>
+      </div>
+
+
+    </body>
 </html>

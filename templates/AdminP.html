@@ -89,17 +89,12 @@
 		<tbody>
 		{% for course in courses %}
 			<tr>
-				<td>{{user.name}}</td>
-				<td>{{user.email}}</td>
-				<td>{{user.created_at}}</td>
-				{% if user.user_level == 9 %}
-				<td>Admin</td>
-				{% else %}
-				<td>Normal</td>
-				{%endif%}
-				<td><a href="/users/{{user.id}}/edit">Edit</a></td>
+				<td>{{course.instructor.name}}</td>
+				<td>{{course.instructor.lastname}}</td>
+				<td>{{course.name}}</td>
+				<td><a href="">Edit</a></td>
 			</tr>
-			{%endfor%}
+        {%endfor%}
 		</tbody>
 	</table>
 

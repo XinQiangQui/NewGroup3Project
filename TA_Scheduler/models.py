@@ -12,40 +12,18 @@ class Account(models.Model):
     status = models.CharField(max_length=20, null=True)
 
 
-#class Supervisor(Account):
- #   Account.status = 'Supervisor'
-
-
-#class Instructor(Account):
- #   Account.status = 'Instructor'
-
-
-#class TA(Account):
- #   Account.status = 'TA'
-  #  if request.user.is_superuser:
-   #     return redirect('Admin/')
-    #elif request.user.role == 'Ta':
-     #   return redirect('TAs/')
-    #else:
-     #   return redirect('Users/')
-
-
-
 # course and lab class
 class Course(models.Model):
     name = models.CharField(max_length=30)
     cId = models.IntegerField(null=True)
     semester = models.CharField(max_length=20, null=True)
-    instructor = Account
-    instructorOrTa = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
+    instructor = None
 
 
 class LabSection(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    instructorOrTa = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
-    number = models.IntegerField()
-    meeting_time = models.CharField(max_length=20)
-    meeting_location = models.CharField(max_length=20)
+    lab_name = models.CharField(max_length=30, null=True)
+    lab_id = models.IntegerField(null=True)
+    TA = None
 
 
 class Assignment(models.Model):
