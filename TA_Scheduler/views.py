@@ -118,9 +118,8 @@ class InstructorToCourse(View):
     def post(self, request):
         instructor_name = request.POST["instructor_name"]
         course_name = request.POST["course_name"]
-        instructor = Account.objects.filter(name=instructor_name)
         course = Course.objects.filter(name=course_name)
-        course.instructor = instructor
+        course.update(instructor_name=instructor_name)
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),

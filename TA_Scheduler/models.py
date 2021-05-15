@@ -17,13 +17,14 @@ class Course(models.Model):
     name = models.CharField(max_length=30)
     cId = models.IntegerField(null=True)
     semester = models.CharField(max_length=20, null=True)
-    instructor = None
+    instructor_name = models.CharField(max_length=20, null=True)
 
 
 class Lab(models.Model):
     lab_name = models.CharField(max_length=30, null=True)
     lab_id = models.IntegerField(null=True)
-    TA = None
+    course = models.CharField(max_length=20, null=True)
+    TA = models.CharField(max_length=20, null=True)
 
 
 class Assignment(models.Model):
