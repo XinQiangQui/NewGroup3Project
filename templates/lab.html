@@ -1,48 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title> Lab Section creator</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/style.css' %}">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Create a new user</title>
+	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+	</style>
 </head>
-<body style="border:black;">
 
-<p><strong>Labs Section Creation</strong></p>
-</form>
+<body>
+<div class="container">
+<a href="/">Logout</a> | <a href="/Instructor">Return</a>
+<hr>
+<h3>Create a lab Section</h3>
 <form action="" method="post">
-    {% csrf_token %} <input name="sectionNumber" type="text" placeholder="Section Number"/>
-    <br/> <input name="sectionLocation" type="text" placeholder="Location"/>
-    <br/> <input name="sectionMeet" type="text" placeholder="Meeting Time"/>
-    <br>
+	{%csrf_token %}
+	 <label for="course_name"><p>Choose course:</label>
 
-    <br/> <label for="TaInstructorSelect">Choose a Ta :</label>
-    <select name="taInstructor">
-        <option value="tbd">To be determined</option>
-        <option value="tbd">Tas-------------------</option>
-        {% for Account in TaList %}
-            <option value="{{ Account.id }}">{{ Account.username }}</option>
-        {% endfor %}
+    <select name="course_name" id="course_name">
+        {% for course in courses %}
+            <option value={{ course.name }}>{{ course.name }}</option>
+        {%endfor%}
     </select>
-    <br><label for="Course Pick">Choose a Course:</label>
-    <select name="Course Pick">
-        <option value="tbd">Select a Course</option>
-        {% for Course in CourseList %}
-            <option value="{{ Course.id }}">{{ Course.name }}</option>
-        {% endfor %}
+	<br><br>
+    Lab Name: <input type="text" name="Lab_name" required>
+    <br><br>
+	lab ID: <input type="text" name="Lab_ID" required>
+	<br><br>
+    <label for="semester"><p>Choose semester:</label>
+
+    <select name="semester" id="semester">
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Fall">Fall</option>
+        <option value="Winter">Winter</option>
     </select>
-    <p><input type="submit"/></p>
+	<input type="submit" value="Create">
 </form>
-</p>
-<div>
-    {% for message in messages %}
-        <h3> {{ message }}</h3>
-    {% endfor %}
 </div>
-<a href="/">Logout</a> | <a href="/supervisor">Return</a>
 
-
-<br>
-
+<table_list>
+    <h4>Courses</h4>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Course Name</th>
+                <th>Course ID</th>
+				<th>Semester</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for course in courses %}
+			<tr>
+                <td>{{course.name}}</td>
+                <td>{{course.cId}}</td>
+                <td>{{course.semester}}</td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+</table_list>
 </body>
 </html>
