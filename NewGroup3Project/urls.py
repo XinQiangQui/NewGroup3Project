@@ -18,7 +18,7 @@ from django.urls import path
 from TA_Scheduler import views
 from django.conf.urls import url
 from TA_Scheduler.views import AdminView, LoginView, NewAccount, \
-                                CoursesView, log_out, edit_page, InstructorToCourse, TaToCourse
+                                CoursesView, log_out, edit_page, InstructorToCourse, TaToCourse, LabsView
 
 urlpatterns = [
 
@@ -34,6 +34,7 @@ urlpatterns = [
     path('newAccount/', NewAccount.as_view()),
     path('courses/', CoursesView.as_view()),
     path('logout/', log_out, name="logout"),
-    path('Instructors/', views.Personal_Info_Instructor, name='Personal_Info_Instructor')
+    path('Instructors/', views.Personal_Info_Instructor, name='Personal_Info_Instructor'),
+    path('labs/', LabsView.as_view())
 
 ]

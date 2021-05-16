@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from TA_Scheduler.models import Account, Course, PersonalInfo, LabSection  # Supervisor, #Instructor, TA
+from TA_Scheduler.models import Account, Course, PersonalInfo, Lab
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate
 
@@ -59,13 +59,9 @@ def edit_page(request):
 
 class NewAccount(View):
     def get(self, request):
-        # create a list
-        TaList = Account.objects.filter(status='Ta')
-        InstructorList = Account.objects.filter(status='Instructor')
-        return render(request, 'newAccount.html', {'TaList': TaList, 'InstructorList': InstructorList})
-
-    # return render(request, 'newAccount.html')
-    # return render(request, 'Login.html')
+        if request.session.get("username"):
+            return render(request, 'newAccount.html')
+        return render(request, 'Login.html')
 
     def post(self, request):
         # create account
@@ -74,7 +70,7 @@ class NewAccount(View):
                                      email=request.POST["email"],
                                      phone_number=request.POST["phone"],
                                      home_address=request.POST["address"],
-                                     # password=request.POST["password"],
+                                     password=request.POST["password"],
                                      status=request.POST["status"])
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
@@ -85,12 +81,8 @@ class NewAccount(View):
 class CoursesView(View):
     def get(self, request):
         if request.session.get("username"):
-            TaList = Account.objects.filter(Status='TA')
-            InstructorList = Account.objects.filter(Status='Instructor')
-            return render(request, 'courses.html', {'TaList': TaList, 'InstructorList': InstructorList})
-            # return render(request, 'courses.html')
-
-    # return render(request, "Login.html")
+            return render(request, 'courses.html')
+        return render(request, "Login.html")
 
     def post(self, request):
         course = Course.objects.create(name=request.POST["course_name"],
@@ -117,21 +109,16 @@ class EditView(View):
 class InstructorToCourse(View):
     def get(self, request):
         if request.session.get("username"):
-            # LabSectionList = Section.Object.all()
-            TaList = Account.objects.filter(status='TA')
-            InstructorList = Account.objects.filter(status='Instructor')
-            return render(request, 'instructor_to_Course.html', {'TaList': TaList, 'InstructorList': InstructorList})
-        # accounts = Account.objects.filter(status='Instructor').all()
-        # return render(request, 'instructor_to_Course.html', {"accounts": accounts,
-        #  "courses": Course.objects.all()})
-        # return render(request, 'Login.html')
+            accounts = Account.objects.filter(status='Instructor')
+            return render(request, 'instructor_to_course.html', {"accounts": accounts,
+                                                                 "courses": Course.objects.all()})
+        return render(request, 'Login.html')
 
     def post(self, request):
-        instructor_name = request.POST["name"]
-        course_id = request.POST["course_id"]
-        instructor = Account.objects.filter(name=instructor_name)
-        course = Course.objects.filter(cId=course_id)
-        course.instructor = instructor
+        instructor_name = request.POST["instructor_name"]
+        course_name = request.POST["course_name"]
+        course = Course.objects.filter(name=course_name)
+        course.update(instructor_name=instructor_name)
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
@@ -198,35 +185,18 @@ def Personal_Info_Instructor(request):
 
 
 # creating lab sections for the courses
-def Create_Section(request):
-    if request.method == 'GET':
-        # admin - landing page loading
-        course = Course.objects.all()
-        TaList = Account.objects.filter(status='Ta')
-        InstructorList = Account.objects.filter(status='Instructor')
-        return render(request, 'lab.html',
-                      {'TaList': TaList, 'InstructorList': InstructorList, 'CourseList': course})
-    if request.method == 'POST':
-        # admin - create sections
-        section_course = request.POST['Course Pick']
-        course_obj = Course.objects.get(id=section_course)
-        section_instructor = request.POST['taInstructor']
-        if section_instructor == 'tbd':
-            instructor_obj = "n"
-        else:
-            instructor_obj = Account.objects.get(id=section_instructor)
-        section_number = request.POST['sectionNumber']
-        section_meeting_time = request.POST['sectionMeet']
-        section_meeting_location = request.POST['sectionLocation']
-        if type(instructor_obj) == str:
-            # this stores a null in the section.instructorOrTa field
-            section = LabSection.objects.create(course=course_obj,
-                                                number=section_number, meeting_time=section_meeting_time,
-                                                meeting_location=section_meeting_location)
-        else:
-            section = LabSection.objects.create(course=course_obj, instructorOrTa=instructor_obj,
-                                                number=section_number, meeting_time=section_meeting_time,
-                                                meeting_location=section_meeting_location)
+class LabsView(View):
+    def get(self, request):
+        if request.session.get("username"):
+            return render(request, 'lab.html')
+        return render(request, "Login.html")
 
-        messages.success(request, 'SECTION SUCCESSFULLY CREATED')
-        return redirect('Create_Section')
+    def post(self, request):
+        lab = Lab.objects.create(lab_name=request.POST["lab_name"],
+                                 lab_id=request.POST["lab_ID"],
+                                 course=request.POST["course"])
+
+        messages.success(request, 'Lab has been Created')
+        return render(request, 'Instructor.html', {"accounts": Account.objects.all(),
+                                                   "lab": Lab.objects.all(),
+                                                   "username": request.session.get("username")})

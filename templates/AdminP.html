@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-	<a href="/edit_page">Edit your profile</a> | <a href="/">Logout</a>
+	<a href=" ">Edit your profile</a> | <a href="/">Logout</a>
 	<hr>
 	<h3>Welcome, {{name}} </h3>
 	<hr>
@@ -82,15 +82,13 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-                <th>Lastname</th>
 				<th>Course</th>
 			</tr>
 		</thead>
 		<tbody>
 		{% for course in courses %}
 			<tr>
-				<td>{{course.instructor.name}}</td>
-				<td>{{course.instructor.lastname}}</td>
+				<td>{{course.instructor_name}}</td>
 				<td>{{course.name}}</td>
 				<td><a href="">Edit</a></td>
 			</tr>

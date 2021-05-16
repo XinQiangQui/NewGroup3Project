@@ -17,23 +17,23 @@ class Course(models.Model):
     name = models.CharField(max_length=30)
     cId = models.IntegerField(null=True)
     semester = models.CharField(max_length=20, null=True)
-    instructor = None
+    instructor_name = models.CharField(max_length=20, null=True)
 
 
-class LabSection(models.Model):
+class Lab(models.Model):
+    lab_name = models.CharField(max_length=30, null=True)
+    lab_id = models.IntegerField(null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    instructorOrTa = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
-    number = models.IntegerField()
-    meeting_time = models.CharField(max_length=20)
-    meeting_location = models.CharField(max_length=20)
+    TA = models.CharField(max_length=20, null=True)
 
 
 class Assignment(models.Model):
     topic = models.CharField(max_length=50, null=True)
-    startDate = models.DateField( null=True)
-    endDate = models.DateField( null=True)
+    startDate = models.DateField(null=True)
+    endDate = models.DateField(null=True)
     content = models.CharField(max_length=200, null=True)
     f = None
+
 
 class PersonalInfo(models.Model):
     instructorOrTa = models.ForeignKey(Account, blank=True, null=True, on_delete=models.CASCADE)
