@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+
+
+	</style>
 </head>
 <body>
-<h1>This is the instructor page</h1>
+<div class="container">
+	 <a href="/">Logout</a>
+	<hr>
+	<h3>Welcome,{{name}} </h3>
+	<hr>
+
+	<h4>Manage Labs</h4>
+	<hr>
+	<a href="/labs">Create lab</a>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Lab Name</th>
+                <th>Lab ID</th>
+				<th>Semester</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for lab in labs %}
+			<tr>
+                <td>{{lab.name}}</td>
+                <td>{{Lab.Id}}</td>
+                <td>{{course.semester}}</td>
+                <td><a href="">Edit</a> | <a href="">Delete</a></td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+</div>
 </body>
 </html>
