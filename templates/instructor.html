@@ -1,48 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+<link rel="stylesheet" href="/path/to/instructor.css" media="print" onload="this.media='all'">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-	body{
-		color:black;
-		font-size:16px;
-		font-weight:bold;
-		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
-		}
-
-
-	</style>
+    <meta name="description" content="Instructor page">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href=Instructor.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-	 <a href="/">Logout</a>
-	<hr>
-	<h3>Welcome,{{name}} </h3>
-	<hr>
+<style>
 
-	<h4>Manage Labs</h4>
-	<hr>
-	<a href="/labs">Create lab</a>
-	<table class="table class table-bordered table-striped table-hovered">
-		<thead>
-			<tr>
-				<th>Lab Name</th>
-                <th>Lab ID</th>
-				<th>Semester</th>
-			</tr>
-		</thead>
-		<tbody>
-		{% for lab in labs %}
-			<tr>
-                <td>{{lab.name}}</td>
-                <td>{{Lab.Id}}</td>
-                <td>{{course.semester}}</td>
-                <td><a href="">Edit</a> | <a href="">Delete</a></td>
-			</tr>
-			{%endfor%}
-		</tbody>
-	</table>
-</div>
+
+    {
+    margin:  0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/banner.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+nav{
+    display: flex;
+    padding: 2% 31%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    width:120px;
+
+
+}
+.links{
+    flex:  1;
+    text-align: right;
+}
+.links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+.links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #FFd700;
+    display: block;
+    margin: auto;
+    transition: 0.4s;
+}
+.links ul li:hover::after{
+    width: 100%;
+}
+.text-box{
+    width: 100%;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align:center;
+
+}
+.text-box h1{
+    font-size: 80px;
+}
+</style>
+<body>
+<!-- Comments: -->
+<section class ="header">
+    <nav>
+       <img src=images/logo3.png>
+        <div class="links">
+            <ul>
+                <li> <a href="ManageAs.html">Manage and View Assignments</a></li>
+                <li> <a href="ManageTA.html">Manage TAs</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-box">
+        <h1>Welcome
+        </h1>
+
+    </div>
+</section>
+
+
+</header>
+<main>
+
+</main>
+<hr/>
+<hr/>
+<br/>
+<footer>
+
+</footer>
 </body>
 </html>
