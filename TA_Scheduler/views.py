@@ -40,7 +40,9 @@ class LoginView(View):
                     return render(request, 'Instructor.html')
                 else:
                     return render(request, 'TA.html')
-
+            else:
+                messages.info(request, 'Incorrect Username / Password')
+                return render(request, "login.html")
         return render(request, "login.html")
 
 
@@ -51,10 +53,42 @@ class AdminView(View):
                                                "name": request.session.get("username")})
 
 
+class delete_account(View):
+    def get(self, request):
+        return render(request, 'delete_account.html', {"accounts": Account.objects.all(),
+                                                       "name": request.session.get("username")})
+
+    def post(self, request):
+        name = request.POST['name']
+        Account.objects.filter(name=name).delete()
+        course = Course.objects.filter(instructor_name=name)
+        print(course)
+        course.instructor_name = ""
+        print(course.instructor_name)
+        return render(request, 'delete_account.html', {"accounts": Account.objects.all(),
+                                                       "courses": Course.objects.all(),
+                                                       "name": request.session.get("username")})
+
+class delete_course(View):
+    def get(self, request):
+        return render(request, 'delete_course.html', {"courses": Course.objects.all(),
+                                                      "name": request.session.get("username")})
+
+    def post(self, request):
+        name = request.POST['name']
+        course = Course.objects.filter(name=name)
+        print(123)
+        course.delete()
+        print(1234)
+        return render(request, 'delete_course.html', {"courses": Course.objects.all(),
+                                                      "name": request.session.get("username")})
+
 def edit_page(request):
     if request.session.get("username"):
         return render(request, 'edit_account.html')
     return render(request, "Login.html")
+
+
 
 
 class NewAccount(View):

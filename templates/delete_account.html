@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Delete account page</title>
+	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
+	<style>
+	body{
+		color:black;
+		font-size:16px;
+		font-weight:bold;
+		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+		}
+
+    table_list {
+        float: right;
+        width:45%
+    }
+	</style>
+</head>
+</head>
+<body>
+<div class="container">
+<a href="/">Logout</a> | <a href="/supervisor">Return</a>
+
+<h3>Delete Account</h3>
+<form action="" method="post">
+	{%csrf_token %}
+    <label for="name"><p>Choose account:</label>
+
+    <select name="name" id="name">
+        {% for user in accounts %}
+            <option value={{ user.name }}>{{ user.name }}</option>
+        {%endfor%}
+    </select>
+	<input type="submit" value="Delete">
+</form>
+</div>
+<div>
+
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Name&nbsp;</th>
+                <th>Lastname&nbsp;</th>
+				<th>Email&nbsp;</th>
+				<th>Phone number&nbsp;</th>
+				<th>Home Address&nbsp;</th>
+				<th>Status&nbsp;</th>
+			</tr>
+		</thead>
+        <tbody>
+            {%for user in accounts %}
+            <tr>
+				    <td>{{user.name}}&nbsp;</td>
+				    <td>{{user.lastname }}&nbsp;</td>
+				    <td>{{user.email}}&nbsp;</td>
+				    <td>{{user.phone_number}}&nbsp;</td>
+                    <td>{{user.home_address}}&nbsp;</td>
+                    <td>{{user.status}}&nbsp;</td>
+
+            </tr>
+            {%endfor%}
+        </tbody>
+	</table>
+
+
+</div>
+
+</body>
+</html>

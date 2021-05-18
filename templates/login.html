@@ -24,6 +24,14 @@
             text-align: center;
             margin: 180px  50px 75px 50px;
         }
+        corner_border {
+            border-radius: 25px;
+            border: 3px solid #73AD21;
+            padding: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: white;
+        }
 
 </style>
 
@@ -37,14 +45,21 @@
             <h2>Enter Login Details: </h2>
             <!-- User name input -->
             <label for="name">Username:</label>
-            <input type="text" id="name" name="name" size="10" required><br/>
+            <input type="text" id="name" name="name" size="20" required><br/>
             <!-- User password input -->
             <label for="password">Password:</label>
-            <input type="text" id="password" name="password"  size="50" required><br/>
-            <br/>
+            <input type="text" id="password" name="password" size="20" required><br/>
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><corner_border>{{ message }}</corner_border></li><br/>
+                {% endfor %}
+                </ul>
+            {% endif %}
                <input type="submit" value="login">
                 <!-- Forget password button does not work yet -->
                 <input type="reset"  value="Forget Password">
+
         </form>
       </div>
 

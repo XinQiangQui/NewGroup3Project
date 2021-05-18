@@ -25,7 +25,7 @@
 
     <h4>Manage Users</h4>
 	<hr>
-	<a href="/newAccount">Add New User</a>
+	<a href="/newAccount">Add New User</a> | <a href="">Edit</a> | <a href="/delete_account">Delete</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
@@ -46,7 +46,7 @@
 				    <td>{{user.phone_number}}</td>
                     <td>{{user.home_address}}</td>
                     <td>{{user.status}}</td>
-				    <td><a href="">Edit</a> | <a href="">Delete</a></td>
+
             </tr>
             {%endfor%}
         </tbody>
@@ -54,7 +54,7 @@
 
     <h4>Manage Course</h4>
 	<hr>
-	<a href="/courses">Create course</a>
+	<a href="/courses">Create course</a> | <a href="">Edit</a> | <a href="/delete_course">Delete</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
@@ -69,7 +69,6 @@
                 <td>{{course.name}}</td>
                 <td>{{course.cId}}</td>
                 <td>{{course.semester}}</td>
-                <td><a href="">Edit</a> | <a href="">Delete</a></td>
 			</tr>
 			{%endfor%}
 		</tbody>
@@ -77,7 +76,7 @@
 
     <h4>Assign Instructor to Course</h4>
 	<hr>
-	<a href="/assign_instructor_to_course">Assign Instructor</a>
+	<a href="/assign_instructor_to_course">Assign Instructor</a> | <a href="">Edit</a>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
@@ -90,7 +89,6 @@
 			<tr>
 				<td>{{course.instructor_name}}</td>
 				<td>{{course.name}}</td>
-				<td><a href="">Edit</a></td>
 			</tr>
         {%endfor%}
 		</tbody>

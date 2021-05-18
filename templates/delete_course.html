@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Assign TA to Lab</title>
+	<title>Delete course page</title>
 	<link rel="stylesheet" href="http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg">
 	<style>
 	body{
@@ -24,70 +24,41 @@
 <div class="container">
 <a href="/">Logout</a> | <a href="/supervisor">Return</a>
 
-<h3>Assign TA to lab Sections</h3>
+<h3>Delete Course</h3>
 <form action="" method="post">
 	{%csrf_token %}
-    <label for="ta"><p>Choose TA:</label>
+    <label for="name"><p>Choose account:</label>
 
-    <select name="ta_name" id="ta_name">
-        {% for ta in ta_list %}
-            <option value={{ ta.name }}>{{ ta.name }}</option>
+    <select name="name" id="name">
+        {% for course in courses %}
+            <option value={{ course.name }}>{{ course.name }}</option>
         {%endfor%}
     </select>
-
-    <label for="lab"><p>Choose lab:</label>
-
-    <select name="lab" id="lab">
-        <option value="lab">Lab Sections</option>
-    </select>
-	<input type="submit" value="Create">
+	<input type="submit" value="Delete">
 </form>
 </div>
 <div>
 
-<table_list>
-    <h4>Labs</h4>
 	<table class="table class table-bordered table-striped table-hovered">
 		<thead>
 			<tr>
-				<th>Lab Name</th>
-                <th>Lab ID</th>
+				<th>Course Name</th>
+                <th>Course ID</th>
 				<th>Semester</th>
 			</tr>
 		</thead>
 		<tbody>
-
-		{% for lab in labs %}
+		{% for course in courses %}
 			<tr>
                 <td>{{course.name}}</td>
                 <td>{{course.cId}}</td>
                 <td>{{course.semester}}</td>
-                <td>{{ labs }}</td>
 			</tr>
 			{%endfor%}
 		</tbody>
 	</table>
-</table_list>
 
-    <table_list>
-    <h3>TAs</h3>
-	<table class="table class table-bordered table-striped table-hovered">
-		<thead>
-			<tr>
-				<th>Name</th>
-                <th>Lastname</th>
-			</tr>
-		</thead>
-        <tbody>
-            {%for user in accounts %}
-            <tr>
-				    <td>{{user.name}}</td>
-				    <td>{{user.lastname }}</td>
-            </tr>
-            {%endfor%}
-        </tbody>
-	</table>
-</table_list>
+
 </div>
 
 </body>

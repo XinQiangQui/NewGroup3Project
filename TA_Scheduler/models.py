@@ -23,7 +23,7 @@ class Course(models.Model):
 class Lab(models.Model):
     lab_name = models.CharField(max_length=30, null=True)
     lab_id = models.IntegerField(null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     TA = models.CharField(max_length=20, null=True)
 
 
