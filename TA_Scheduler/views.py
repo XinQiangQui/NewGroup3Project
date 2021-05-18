@@ -40,9 +40,7 @@ class LoginView(View):
                     return render(request, 'Instructor.html')
                 else:
                     return render(request, 'TA.html')
-            else:
-                messages.info(request, 'Incorrect Username / Password')
-                return render(request, "login.html")
+        messages.info(request, 'Incorrect Username / Password')
         return render(request, "login.html")
 
 
@@ -83,8 +81,6 @@ def edit_page(request):
     if request.session.get("username"):
         return render(request, 'edit_account.html')
     return render(request, "Login.html")
-
-
 
 
 class NewAccount(View):
