@@ -50,6 +50,7 @@ class AdminView(View):
     def get(self, request):
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
+                                               "labs": Lab.objects.all(),
                                                "name": request.session.get("username")})
 
 
@@ -62,9 +63,7 @@ class delete_account(View):
         name = request.POST['name']
         Account.objects.filter(name=name).delete()
         course = Course.objects.filter(instructor_name=name)
-        print(course)
-        course.instructor_name = ""
-        print(course.instructor_name)
+        course.update(instructor_name=None)
         return render(request, 'delete_account.html', {"accounts": Account.objects.all(),
                                                        "courses": Course.objects.all(),
                                                        "name": request.session.get("username")})
@@ -76,10 +75,7 @@ class delete_course(View):
 
     def post(self, request):
         name = request.POST['name']
-        course = Course.objects.filter(name=name)
-        print(123)
-        course.delete()
-        print(1234)
+        Course.objects.filter(name=name).delete()
         return render(request, 'delete_course.html', {"courses": Course.objects.all(),
                                                       "name": request.session.get("username")})
 
@@ -109,6 +105,7 @@ class NewAccount(View):
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
+                                               "labs": Lab.objects.all(),
                                                "username": request.session.get("username")})
 
 
@@ -123,13 +120,12 @@ class CoursesView(View):
                                        cId=request.POST["course_ID"],
                                        semester=request.POST["semester"])
 
-        messages.success(request, 'COURSE SUCCESSFULLY CREATED')
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
+                                               "labs": Lab.objects.all(),
                                                "username": request.session.get("username")})
 
 
-# not yet implemented
 class EditView(View):
     def get(self, request):
         if request.session.get("username"):
@@ -156,6 +152,7 @@ class InstructorToCourse(View):
 
         return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
                                                "courses": Course.objects.all(),
+                                               "labs": Lab.objects.all(),
                                                "username": request.session.get("username")})
 
 
@@ -222,15 +219,16 @@ def Personal_Info_Instructor(request):
 class LabsView(View):
     def get(self, request):
         if request.session.get("username"):
-            return render(request, 'lab.html')
+            return render(request, 'lab_create.html', {"courses": Course.objects.all(),
+                                                       "username": request.session.get("username")})
         return render(request, "Login.html")
 
     def post(self, request):
         lab = Lab.objects.create(lab_name=request.POST["lab_name"],
                                  lab_id=request.POST["lab_ID"],
-                                 course=request.POST["course"])
+                                 course_name=request.POST["course_name"])
 
-        messages.success(request, 'Lab has been Created')
-        return render(request, 'Instructor.html', {"accounts": Account.objects.all(),
-                                                   "lab": Lab.objects.all(),
-                                                   "username": request.session.get("username")})
+        return render(request, 'adminP.html', {"accounts": Account.objects.all(),
+                                               "courses": Course.objects.all(),
+                                               "labs": Lab.objects.all(),
+                                               "username": request.session.get("username")})

@@ -11,6 +11,7 @@
 		font-size:16px;
 		font-weight:bold;
 		background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
+        background-size:cover;
 		}
 
 
@@ -18,7 +19,7 @@
 </head>
 <body>
 <div class="container">
-	<a href=" ">Edit your profile</a> | <a href="/">Logout</a>
+	<a href="/edit_personal">Edit your profile</a> | <a href="/">Logout</a>
 	<hr>
 	<h3>Welcome, {{name}} </h3>
 	<hr>
@@ -72,6 +73,19 @@
 			</tr>
 			{%endfor%}
 		</tbody>
+	</table>
+
+    <h4>Manage lab</h4>
+	<hr>
+	<a href="/labs">Create lab</a> | <a href="">Edit</a> | <a href="">Delete</a>
+	<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Lab Name</th>
+                <th>Lab ID</th>
+				<th>Course ID</th>
+			</tr>
+		</thead>
 	</table>
 
     <h4>Assign Instructor to Course</h4>
