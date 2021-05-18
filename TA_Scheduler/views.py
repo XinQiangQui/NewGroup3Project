@@ -177,7 +177,6 @@ class instructor_view(View):
 
 class add_skill_view(View):
     def get(self,request):
-
         if request.session.get("username"):
             name = request.session.get("username")
             return render(request, 'add_skill.html', {"skills": Skill.objects.filter(TA=name),
@@ -189,14 +188,14 @@ class add_skill_view(View):
         ta_skill = request.POST["skill"]
 
         if Skill.objects.filter(TA=name):
-            for i in Skill.objects.filter(TA=name):
-                i.list.append(ta_skill)
-                i.save()
+            ta = Skill.objects.filter(TA=name)
+            ta.update(skills=ta_skill)
         else:
             Skill.objects.create(TA=name,
-                                 list=[ta_skill])
+                                 skills=ta_skill)
 
-        return render(request, 'TA.html', {"name": request.session.get("username")})
+        return render(request, 'add_skill.html', {"skills": Skill.objects.filter(TA=name),
+                                                  "name": request.session.get("username")})
 
 
 # personal info for instructor

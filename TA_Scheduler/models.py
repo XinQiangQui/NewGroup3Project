@@ -28,7 +28,7 @@ class Lab(models.Model):
 
 class Skill(models.Model):
     TA = models.CharField(max_length=20, null=True)
-    skills = []
+    skills = models.CharField(max_length=20, null=True)
 
 class Assignment(models.Model):
     topic = models.CharField(max_length=50, null=True)
