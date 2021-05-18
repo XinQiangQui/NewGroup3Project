@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from TA_Scheduler.models import Account, Course, PersonalInfo, Lab
+from TA_Scheduler.models import Account, Course, PersonalInfo, Lab, Skill
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate
 
@@ -37,9 +37,13 @@ class LoginView(View):
                                                            "courses": Course.objects.all(),
                                                            "name": username})
                 elif account_status == 'Instructor':
-                    return render(request, 'Instructor.html')
+                    return render(request, 'Instructor.html', {"accounts": accounts,
+                                                               "courses": Course.objects.all(),
+                                                               "name": username})
                 else:
-                    return render(request, 'TA.html')
+                    return render(request, 'TA.html', {"accounts": accounts,
+                                                       "courses": Course.objects.all(),
+                                                       "name": username})
         messages.info(request, 'Incorrect Username / Password')
         return render(request, "login.html")
 
@@ -157,20 +161,42 @@ class TaToCourse(View):
         return render(request, 'ta_to_lab.html')
 
 
-def ta_view(request):
+class ta_view(View):
     def get(self, request):
-        return render(request, 'login.html')
+        if request.session.get("username"):
+            return render(request, 'TA.html', {"name": request.session.get("username")})
+        return render(request, 'Login.html')
+
+
+class instructor_view(View):
+    def get(self, request):
+        if request.session.get("username"):
+            return render(request, 'Instructor.html', {"name": request.session.get("username")})
+        return render(request, 'Login.html')
+
+
+class add_skill_view(View):
+    def get(self,request):
+
+        if request.session.get("username"):
+            name = request.session.get("username")
+            return render(request, 'add_skill.html', {"skills": Skill.objects.filter(TA=name),
+                                                      "name": request.session.get("username")})
+        return render(request, 'Login.html')
 
     def post(self, request):
-        return render(request, 'ta_page.html')
+        name = request.session.get("username")
+        ta_skill = request.POST["skill"]
 
+        if Skill.objects.filter(TA=name):
+            for i in Skill.objects.filter(TA=name):
+                i.list.append(ta_skill)
+                i.save()
+        else:
+            Skill.objects.create(TA=name,
+                                 list=[ta_skill])
 
-def instructor_view(request):
-    def get(self, request):
-        return render(request, 'login.html')
-
-    def post(self, request):
-        return render(request, 'instructor.html')
+        return render(request, 'TA.html', {"name": request.session.get("username")})
 
 
 # personal info for instructor

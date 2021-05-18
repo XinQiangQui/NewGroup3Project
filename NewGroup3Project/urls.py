@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from TA_Scheduler import views
 from django.conf.urls import url
-from TA_Scheduler.views import AdminView, LoginView, NewAccount, \
+from TA_Scheduler.views import AdminView, LoginView, NewAccount, add_skill_view, ta_view, instructor_view, \
                                 CoursesView, log_out, edit_page, EditView, \
                                 InstructorToCourse, TaToCourse, LabsView, delete_account, delete_course
 
@@ -39,6 +39,8 @@ urlpatterns = [
     path('labs/', LabsView.as_view()),
     path('edit_personal/', EditView.as_view()),
     path('delete_account/', delete_account.as_view(), name='delete_account'),
-    path('delete_course/', delete_course.as_view(), name='delete_course')
-
+    path('delete_course/', delete_course.as_view(), name='delete_course'),
+    path('add_skill/', add_skill_view.as_view(), name='add-skill'),
+    path('ta_view/', ta_view.as_view(), name='ta_view'),
+    path('instructor_view/', instructor_view.as_view(), name='instructor_view'),
 ]

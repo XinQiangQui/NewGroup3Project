@@ -1,145 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
-<link rel="stylesheet" href="/path/to/instructor.css" media="print" onload="this.media='all'">
-    <meta charset="UTF-8">
-    <meta name="description" content="Instructor page">
-    <title>TA Edit Page</title>
-    <link rel="stylesheet" href=Instructor.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-</head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <style>
-
-
-    {
-    margin:  0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
-.header{
-    min-height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/banner.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    color: #fff;
-}
-nav{
+  * {
+   box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+  #main {
     display: flex;
-    padding: 2% 31%;
-    justify-content: space-between;
-    align-items: center;
+    min-height: calc(100vh - 40vh);
+  }
+  #main > article {
+    flex: 1;
+  }
+  #main > nav,
+  #main > aside {
+    flex: 0 0 20vw;
+    background: yellow;
+  }
+  #main > nav {
+    order: -1;
+  }
+  header, footer, article, nav, aside {
+    padding: 1em;
+  }
+  header {
+      background: black url("https://uwm.edu/wp-content/uploads/2016/12/uwm-seo-logo.jpg") no-repeat center;
+      height: 20vh;
+  }
+  footer {
+      background: black;
+      height: 20vh;
+  }
+.btn-group button {
+  background-color: grey;
+  border: 1px solid black;
+  color: white;
+  padding: 55px 100px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
 }
-nav img{
-    width:120px;
 
-
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
 }
 
-.links{
-    flex:  1;
-    text-align: right;
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
 }
-.links ul li{
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    position: relative;
-}
-.links ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 17px;
-}
-.links ul li::after{
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #FFd700;
-    display: block;
-    margin: auto;
-    transition: 0.4s;
-}
-.links ul li:hover::after{
-    width: 100%;
-}
-.text-box{
-    width: 100%;
-    color: #ffffff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align:center;
 
+h1{
+    text-align: center;
+    margin: 200px 150px 100px 80px;
 }
-.text-box h1{
-    font-size: 80px;
-}
+
 </style>
+</head>
 <body>
-<!-- Comments: -->
-<section class ="header">
+  <header></header>
+  <div id="main">
+    <article><div ALIGN="CENTER">
+        <h1>Welcome, {{ name }}</h1>
+</div></article>
     <nav>
-       <img src=images/logo3.png>
-        <div class="links">
-            <ul>
-                <li> <a href="#">Email</a></li>
-                <li> <a href="#">Contacts</a></li>
-                <li> <a href="#">View Assignments</a>
-                <li> <a href="TA.html">Edit</a></li>
-                 <li> <a href="ta_page.html">Back</a></li>
-            </ul>
+        <div class="btn-group">
+            <a href="/add_skill"><button>Add Skill</button></a>
+            <a href="/view_assignment"><button>View Assignments</button></a>
+            <a href="/edit_page"><button>Edit Account</button></a>
+            <a href="/"><button>Logout</button></a>
         </div>
-    </nav>
 
+    </nav>
+  </div>
 </body>
 </html>
 
-
-<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3" style="margin-bottom: 50px;" ALIGN="CENTER">
-   <TR>
-      <TH COLSPAN="2" ><BR><H3 ALIGN="CENTER" >Current Skills</H3>
-      </TH>
-
-   </TR>
-
-   <TR ALIGN="CENTER">
-      <TH>Python</TH>
-
-   </TR>
-     <TR ALIGN="CENTER">
-      <TH>Django</TH>
-
-   </TR>
-
-</TABLE>
-
-
-
-<div ALIGN="CENTER">
-    <form>
-        <div>
-            <label for="addSkill">Add Skill</label>
-            <input id="skill" type="text" name="text">
-        </div>
-        <div>
-            <input type="submit" value="Add">
-        </div>
-    </form>
-</div>
-</section>
-
-
-</header>
-<main>
-
-</main>
-<hr/>
-<hr/>
-<br/>
 <footer>
 
 </footer>

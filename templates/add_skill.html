@@ -42,14 +42,14 @@
   background-color: grey;
   border: 1px solid black;
   color: white;
-  padding: 25px 100px;
+  padding: 55px 100px;
   cursor: pointer;
   width: 100%;
   display: flex;
 }
 
 .btn-group button:not(:last-child) {
-  border-bottom: none;
+  border-bottom: none; /* Prevent double borders */
 }
 
 /* Add a background color on hover */
@@ -68,13 +68,31 @@ h1{
   <header></header>
   <div id="main">
     <article><div ALIGN="CENTER">
-        <h1>Welcome, {{ name }}</h1>
+        <h1>Skills</h1>
+            {%for i in skills %}
+            <tr>
+                {% for j in i.list %}
+                    <td>{{j}}</td>
+
+                {%endfor%}
+
+                </tr>
+            {%endfor%}
+<div ALIGN="CENTER">
+    <form>
+        <div>
+            <label for="addSkill">Add Skill</label>
+            <input id="skill" type="text" name="skill">
+        </div>
+        <div>
+            <input type="submit" value="Add">
+        </div>
+    </form>
+</div>
 </div></article>
     <nav>
         <div class="btn-group">
-            <a href="/create_assignment"><button>Create Assignment</button></a>
-            <a href=""><button>Assign TA to lab</button></a>
-            <a href=""><button>Send Email</button></a>
+            <a href="/ta_view"><button>Profile</button></a>
             <a href="/view_assignment"><button>View Assignments</button></a>
             <a href="/edit_page"><button>Edit Account</button></a>
             <a href="/"><button>Logout</button></a>
