@@ -1,48 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Edit Page</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../static/adminP/TaPage.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/path/to/instructor.css" media="print" onload="this.media='all'">
+    <meta charset="UTF-8">
+    <meta name="description" content="Instructor page">
+    <title>TA Edit Page</title>
+    <link rel="stylesheet" href=Instructor.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
+<style>
+
+
+    {
+    margin:  0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/banner.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+}
+nav{
+    display: flex;
+    padding: 2% 31%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    width:120px;
+
+
+}
+
+.links{
+    flex:  1;
+    text-align: right;
+}
+.links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+.links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #FFd700;
+    display: block;
+    margin: auto;
+    transition: 0.4s;
+}
+.links ul li:hover::after{
+    width: 100%;
+}
+.text-box{
+    width: 100%;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align:center;
+
+}
+.text-box h1{
+    font-size: 80px;
+}
+</style>
 <body>
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <div class="logo"><img src="Logo3.png" width="60" height="60"></div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item"><a class="nav-link" href="ta_page.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Email</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contacts</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">View</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Assignments</a></li>
-                <li class="nav-item"><a class="nav-link" href="edit_page.html">Edit</a></li>
+<!-- Comments: -->
+<section class ="header">
+    <nav>
+       <img src=images/logo3.png>
+        <div class="links">
+            <ul>
+                <li> <a href="#">Email</a></li>
+                <li> <a href="#">Contacts</a></li>
+                <li> <a href="#">View Assignments</a>
+                <li> <a href="TA.html">Edit</a></li>
+                 <li> <a href="ta_page.html">Back</a></li>
             </ul>
         </div>
-    </div>
-</nav>
+    </nav>
+
+</body>
+</html>
+
+
 <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3" style="margin-bottom: 50px;" ALIGN="CENTER">
    <TR>
-      <TH COLSPAN="2" ><BR><H3 ALIGN="CENTER">Current Skills</H3>
+      <TH COLSPAN="2" ><BR><H3 ALIGN="CENTER" >Current Skills</H3>
       </TH>
+
    </TR>
 
    <TR ALIGN="CENTER">
-      <TD>Data</TD>
+      <TH>Python</TH>
 
    </TR>
+     <TR ALIGN="CENTER">
+      <TH>Django</TH>
+
+   </TR>
+
 </TABLE>
 
 
@@ -58,5 +130,19 @@
         </div>
     </form>
 </div>
+</section>
+
+
+</header>
+<main>
+
+</main>
+<hr/>
+<hr/>
+<br/>
+<footer>
+
+</footer>
 </body>
 </html>
+
