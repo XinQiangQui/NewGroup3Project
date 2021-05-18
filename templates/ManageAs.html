@@ -18,19 +18,38 @@
 
 <body>
 <div class="Main">
-<a href="/">Logout</a> <a href="/instructor.html">Return</a>
+<a href="login.html">Logout</a> <a href="instructor.html">Return</a>
 <hr>
-<h3>Add a new course</h3>
+<h3>Add a New Assignment</h3>
 <form action="" method="post">
 
-	Assignment Name: <input type="text" name="Ass_name" required>
+	Assignment Name: <input type="text" name="ass_name" required>
 	<br><br>
-	Start Date: <input type="text" name="Start" required>
+	Start Date: <input type="text" name="start" required>
 	<br><br>
-	Due Date: <input type="text" name="End" required>
+	Due Date: <input type="text" name="end" required>
 	<br><br>
 	<input type="submit" value="Create">
 </form>
 </div>
 </body>
+<table class="table class table-bordered table-striped table-hovered">
+		<thead>
+			<tr>
+				<th>Assignment Name</th>
+                <th>Start Date</th>
+				<th>End Date</th>
+			</tr>
+		</thead>
+        <tbody>
+            {%for assignment in assignments %}
+            <tr>
+				    <td>{{assignment.name}}</td>
+				    <td>{{assignment.start}}</td>
+				    <td>{{assignment.end}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+	</table>
+
 </html>

@@ -39,9 +39,8 @@ class Lab(models.Model):
 
 
 class Assignment(models.Model):
-    topic = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=50, null=True)
     startDate = models.DateField( null=True)
     endDate = models.DateField( null=True)
-    content = models.CharField(max_length=200, null=True)
     f = None
 

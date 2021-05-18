@@ -129,6 +129,22 @@ class TaToCourse(View):
     def get(self, request):
         return render(request, 'ta_to_lab.html')
 
+    class CoursesView(View):
+        def get(self, request):
+            if request.session.get("username"):
+                return render(request, 'courses.html')
+            return render(request, "Login.html")
+
+        def post(self, request):
+            course = Course.objects.create(name=request.POST["course_name"],
+                                           cId=request.POST["course_ID"],
+                                           semester=request.POST["semester"])
+
+            messages.success(request, 'COURSE SUCCESSFULLY CREATED')
+            return render(request, 'AdminP.html', {"accounts": Account.objects.all(),
+                                                   "courses": Course.objects.all(),
+                                                   "username": request.session.get("username")})
+
 
 def ta_view(request):
     def get(self, request):
@@ -138,3 +154,17 @@ def ta_view(request):
 def instructor_view(request):
     def get(self, request):
         return render(request, 'login.html')
+
+class ManageAsView(View):
+    def get(self, request):
+        if request.session.get("username"):
+            return render(request, 'courses.html')
+        return render(request, "Login.html")
+
+    def post(self, request):
+        course = Course.objects.create(name=request.POST["ass_name"],
+                                       startDate=request.POST["start"],
+                                       endDate=request.POST["end"])
+
+        messages.success(request, 'Assignment Created')
+        return render(request, 'AdminP.html', {"accounts": Assignment.objects.all()})
